@@ -1,24 +1,10 @@
-import {
-  getIbanRules,
-  getBankBranchRules,
-  getReferenceIdRules,
-  getDescriptionRules,
-  getAttachmentsRules,
-  getBankNameRules,
-} from "./rules";
-import { RuleNameMapType, RulesObject, FieldError } from "./types";
+import { RulesObject, FieldError } from "./types";
 
-const ruleNameMap: RuleNameMapType = {
-  bankName: getBankNameRules,
-  bankBranch: getBankBranchRules,
-  referenceId: getReferenceIdRules,
-  iban: getIbanRules,
-  description: getDescriptionRules,
-  attachments: getAttachmentsRules,
-};
-
-function validateField(value: string, name: string, t: any): Array<FieldError> {
-  const rulesObject: RulesObject = ruleNameMap[name](t);
+function validateField(
+  value: string,
+  name: string,
+  rulesObject: RulesObject
+): Array<FieldError> {
   const errors: Array<FieldError> = [];
 
   const configMap: {
@@ -54,7 +40,9 @@ function validateField(value: string, name: string, t: any): Array<FieldError> {
   try {
     Object.entries(rulesObject).forEach(
       ([key, { value: ruleValue, message }]) => {
-        configMap[key](value, ruleValue, message);
+        if (configMap[key]) {
+          configMap[key](value, ruleValue, message);
+        }
       }
     );
   } catch (e) {

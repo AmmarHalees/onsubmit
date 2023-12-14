@@ -12,10 +12,6 @@ export interface FieldError {
   message: string;
 }
 
-export type RuleNameMapType = {
-  [key: string]: (t: any) => RulesObject;
-};
-
 export type ConfigMap = {
   [key: string]: (value: string, limit: any, message: string) => void;
 };

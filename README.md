@@ -8,7 +8,6 @@
 
 <div align="center">
 
-
 </div>
 
 <p align="center">
@@ -23,6 +22,7 @@
 - Light-weight.
 - Ephemral.
 - Simple API.
+- Zero dependencies.
 
 
 ### Install 

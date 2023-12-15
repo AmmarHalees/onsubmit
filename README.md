@@ -131,3 +131,30 @@ const values = {
 
 const errors = validateForm(values, rulesObject);
 ```
+
+## Types 
+  
+  ```Typescript
+
+  CustomFunction = (value: string) => boolean;
+
+  Rule = {
+    value: string | number | boolean | RegExp | CustomFunction;
+    message: string;
+  };
+
+  FieldError = {
+    name: string;
+    message: string;
+  };
+
+  RulesObject = {
+    [key: string]: Rule;
+  };
+  ```
+
+
+### Future Plans
+
+- Add `fileList` validation rules.
+- Expose `isSecure` APIs.

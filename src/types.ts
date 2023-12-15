@@ -19,3 +19,6 @@ export interface CustomFunction {
 export type ConfigMap = {
   [key: string]: (value: string, limit: any, message: string) => void;
 };
+
+
+export type RuleLimit = string | number | RegExp | CustomFunction;

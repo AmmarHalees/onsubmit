@@ -1,8 +1,6 @@
 import { RulesObject, FieldError, CustomFunction } from "./types";
 import isString from "./utils/isString";
 
-// type CustomFunction = (value: string) => boolean;
-
 function validateField(
   value: string,
   name: string,

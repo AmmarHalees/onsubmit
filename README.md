@@ -21,7 +21,9 @@
 ### Features
 
 - Library-agnostic.
-- Lightweight.
+- Light-weight.
+- Ephemral.
+- Simple API.
 
 
 ### Install 

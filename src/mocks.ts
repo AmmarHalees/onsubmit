@@ -344,12 +344,117 @@ const custom = {
   },
 };
 
+const multipleRules = {
+  case1: {
+    rules: {
+      required: {
+        value: true,
+        message: "Name is required",
+      },
+      min: {
+        value: 6,
+        message: "Name least 6 characters long",
+      },
+      max: {
+        value: 10,
+        message: "Name should not exceed 10 characters",
+      },
+      pattern: {
+        value: /^[a-zA-Z]+$/,
+        message: "Name should contain only letters",
+      },
+      custom: {
+        value: (value: string) => {
+          if (value.endsWith("*")) {
+            return true;
+          }
+          return false;
+        },
+        message: "Name should not end with *",
+      },
+    },
+    value: "a2*",
+    expectedOutput: [
+      { name: "testField", message: "Name least 6 characters long" },
+      { name: "testField", message: "Name should contain only letters" },
+      { name: "testField", message: "Name should not end with *" },
+    ],
+  },
+
+  case2: {
+    rules: {
+      required: {
+        value: true,
+        message: "Name is required",
+      },
+      min: {
+        value: 6,
+        message: "Name least 6 characters long",
+      },
+      max: {
+        value: 20,
+        message: "Name should not exceed 20 characters",
+      },
+      pattern: {
+        value: /^[a-zA-Z]+$/,
+        message: "Name should contain only letters",
+      },
+      custom: {
+        value: (value: string) => {
+          if (value.endsWith("*")) {
+            return true;
+          }
+          return false;
+        },
+        message: "Name should not end with *",
+      },
+    },
+    value: "alhalees",
+    expectedOutput: [],
+  },
+
+  case3: {
+    rules: {
+      required: {
+        value: true,
+        message: "Name is required",
+      },
+      min: {
+        value: 6,
+        message: "Name least 6 characters long",
+      },
+      max: {
+        value: 20,
+        message: "Name should not exceed 20 characters",
+      },
+      pattern: {
+        value: /^[a-zA-Z]+$/,
+        message: "Name should contain only letters",
+      },
+      custom: {
+        value: (value: string) => {
+          if (value.endsWith("*")) {
+            return true;
+          }
+          return false;
+        },
+        message: "Name should not end with *",
+      },
+      custom2: "",
+    },
+
+    value: "alhalees",
+    expectedOutput: [],
+  },
+};
+
 const mocks = {
   min,
   max,
   pattern,
   required,
   custom,
+  multipleRules,
 };
 
 export default mocks;

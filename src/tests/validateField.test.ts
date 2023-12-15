@@ -89,7 +89,6 @@ describe("validateField", () => {
       mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber
         .expectedOutput
     );
-
     expect(
       validateField(
         mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber2.value,
@@ -100,7 +99,6 @@ describe("validateField", () => {
       mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber2
         .expectedOutput
     );
-
     expect(
       validateField(
         mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber3.value,
@@ -111,7 +109,6 @@ describe("validateField", () => {
       mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber3
         .expectedOutput
     );
-
     expect(
       validateField(
         mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber4.value,
@@ -122,7 +119,6 @@ describe("validateField", () => {
       mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber4
         .expectedOutput
     );
-
     expect(
       validateField(
         mocks.pattern.isValidURI.value,
@@ -130,7 +126,6 @@ describe("validateField", () => {
         mocks.pattern.isValidURI.rules
       )
     ).toEqual(mocks.pattern.isValidURI.expectedOutput);
-
     expect(
       validateField(
         mocks.pattern.isValidCUID.value,
@@ -138,7 +133,6 @@ describe("validateField", () => {
         mocks.pattern.isValidCUID.rules
       )
     ).toEqual(mocks.pattern.isValidCUID.expectedOutput);
-
     expect(
       validateField(
         mocks.pattern.isValidCUID2.value,
@@ -146,7 +140,6 @@ describe("validateField", () => {
         mocks.pattern.isValidCUID2.rules
       )
     ).toEqual(mocks.pattern.isValidCUID2.expectedOutput);
-
     expect(
       validateField(
         mocks.pattern.isValidULID.value,
@@ -154,7 +147,6 @@ describe("validateField", () => {
         mocks.pattern.isValidULID.rules
       )
     ).toEqual(mocks.pattern.isValidULID.expectedOutput);
-
   });
 
   it("should validate required", () => {
@@ -221,5 +213,23 @@ describe("validateField", () => {
         mocks.custom.hasAtLeast3SpecialCharacters.rules
       )
     ).toEqual(mocks.custom.hasAtLeast3SpecialCharacters.expectedOutput);
+  });
+
+  it("should validate multiple rules", () => {
+    expect(
+      validateField(
+        mocks.multipleRules.case1.value,
+        "testField",
+        mocks.multipleRules.case1.rules
+      )
+    ).toEqual(mocks.multipleRules.case1.expectedOutput);
+
+    expect(
+      validateField(
+        mocks.multipleRules.case2.value,
+        "testField",
+        mocks.multipleRules.case2.rules
+      )
+    ).toEqual(mocks.multipleRules.case2.expectedOutput);
   });
 });

@@ -20,7 +20,7 @@
 
 ### Features
 
-- Library-agnostic.
+- Library/Context-agnostic.
 - Light-weight.
 - Ephemral.
 - Simple API.
@@ -59,7 +59,7 @@ if (errors.length > 0) {
 #### Methods
 | Function        | Description                                           | Parameters                                                        | Returns            |
 |-----------------|-------------------------------------------------------|-------------------------------------------------------------------|--------------------|
-| `validateField` | Validates a single form field against specified rules.| `value`: The value of the field.<br>`name`: Name of the field.<br>`rulesObject`: Object containing validation rules. | Array of `FieldError` objects, each containing the `name` of the field and the error `message`. |
+| `validateField` | Validates a single form field against specified rules.| `value`: The string  value of the field.<br>`name`: Name of the field.<br>`rulesObject`: Object containing validation rules. | Array of `FieldError` objects, each containing the `name` of the field and the error `message`. |
 | `validateForm`  | Validates an entire form.                             | `values`: Object with field names as keys and field values as values.<br>`rulesObject`: Object containing validation rules for each field. | Array of `FieldError` objects for the entire form. |
 
 #### Validation Rules

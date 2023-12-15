@@ -1,4 +1,6 @@
 const email = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+const URI =
+  /^(https?:\/\/)?(www\.)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
 // alphanumeric with spaces
 const numeric = /^[0-9]*$/;
 const alphanumericWithoutSpaces = /^\w+$/;
@@ -10,6 +12,7 @@ const alphanumeric = /^[-\w\s]+$/;
 
 export {
   email,
+  URI,
   numeric,
   alphanumericWithoutSpaces,
   nameWithArabicCharacters,

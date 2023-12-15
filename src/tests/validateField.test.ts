@@ -1,4 +1,3 @@
-// validateField.test.ts
 import { describe, it, expect } from "vitest";
 import { validateField } from "../index";
 import mocks from "../mocks";
@@ -123,6 +122,14 @@ describe("validateField", () => {
       mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber4
         .expectedOutput
     );
+
+    expect(
+      validateField(
+        mocks.pattern.isValidURI.value,
+        "testField",
+        mocks.pattern.isValidURI.rules
+      )
+    ).toEqual(mocks.pattern.isValidURI.expectedOutput);
   });
 
   it("should validate required", () => {

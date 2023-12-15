@@ -1,4 +1,5 @@
 import { RulesObject, FieldError } from "./types";
+import isString from "./utils/isString";
 
 function validateField(
   value: string,
@@ -11,8 +12,15 @@ function validateField(
     [key: string]: (value: string, limit: any, message: string) => void;
   } = {
     min: (value, limit, message) => {
-      if (value && value.length > 0 && !(value.length >= limit)) {
+      if (
+        value &&
+        isString(value) &&
+        value.length > 0 &&
+        !(value.length >= limit)
+      ) {
         errors.push({ name, message });
+      } else {
+        console.warn("empty or non-string input");
       }
     },
     max: (value, limit, message) => {
@@ -41,8 +49,9 @@ function validateField(
   try {
     Object.entries(rulesObject).forEach(
       ([key, { value: ruleValue, message }]) => {
-        if (configMap[key]) {
-          configMap[key](value, ruleValue, message);
+        if (configMap[key] && configMap[key] !== undefined) {
+          const defaultFunction = () => {};
+          (configMap[key] || defaultFunction)(value, ruleValue, message);
         }
       }
     );

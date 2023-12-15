@@ -1,4 +1,5 @@
 import { email } from "./patterns";
+import constants from "./constants.json";
 
 const min = {
   pass: {
@@ -52,6 +53,18 @@ const pattern = {
     },
     value: "abcgmail.com",
     expectedOutput: [{ name: "testField", message: "Must be a valid email" }],
+  },
+
+  isValidURI: {
+    rules: {
+      pattern: {
+        value:
+          /^(https?:\/\/)?(www\.)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
+        message: "Must be a valid link",
+      },
+    },
+    value: "httpswwwgooglecom",
+    expectedOutput: [{ name: "testField", message: "Must be a valid link" }],
   },
 
   isAValidEmail2: {
@@ -275,7 +288,7 @@ const custom = {
     rules: {
       custom: {
         value: (value: string) => {
-          const specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*"];
+          const specialCharacters = constants.specialCharacters;
           let count = 0;
           for (let i = 0; i < value.length; i++) {
             if (specialCharacters.includes(value[i] as string)) {

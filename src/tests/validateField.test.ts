@@ -130,6 +130,31 @@ describe("validateField", () => {
         mocks.pattern.isValidURI.rules
       )
     ).toEqual(mocks.pattern.isValidURI.expectedOutput);
+
+    expect(
+      validateField(
+        mocks.pattern.isValidCUID.value,
+        "testField",
+        mocks.pattern.isValidCUID.rules
+      )
+    ).toEqual(mocks.pattern.isValidCUID.expectedOutput);
+
+    expect(
+      validateField(
+        mocks.pattern.isValidCUID2.value,
+        "testField",
+        mocks.pattern.isValidCUID2.rules
+      )
+    ).toEqual(mocks.pattern.isValidCUID2.expectedOutput);
+
+    expect(
+      validateField(
+        mocks.pattern.isValidULID.value,
+        "testField",
+        mocks.pattern.isValidULID.rules
+      )
+    ).toEqual(mocks.pattern.isValidULID.expectedOutput);
+
   });
 
   it("should validate required", () => {

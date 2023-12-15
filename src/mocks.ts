@@ -1,4 +1,4 @@
-import { email } from "./patterns";
+import regex from "./regex";
 import constants from "./constants.json";
 
 const min = {
@@ -47,7 +47,7 @@ const pattern = {
   isAValidEmail: {
     rules: {
       pattern: {
-        value: email,
+        value: regex.email,
         message: "Must be a valid email",
       },
     },
@@ -58,8 +58,7 @@ const pattern = {
   isValidURI: {
     rules: {
       pattern: {
-        value:
-          /^(https?:\/\/)?(www\.)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
+        value: regex.uri,
         message: "Must be a valid link",
       },
     },
@@ -70,7 +69,7 @@ const pattern = {
   isAValidEmail2: {
     rules: {
       pattern: {
-        value: email,
+        value: regex.email,
         message: "Must be a valid email",
       },
     },
@@ -179,6 +178,38 @@ const pattern = {
       },
     },
     value: "abc!@#123ABC",
+    expectedOutput: [],
+  },
+
+  isValidCUID: {
+    rules: {
+      pattern: {
+        value: regex.cuid,
+        message: "Must be a valid CUID",
+      },
+    },
+    value: "c123",
+    expectedOutput: [{ name: "testField", message: "Must be a valid CUID" }],
+  },
+
+  isValidCUID2: {
+    rules: {
+      pattern: {
+        value: regex.cuid,
+        message: "Must be a valid CUID",
+      },
+    },
+    value: "c123456789",
+    expectedOutput: [],
+  },
+  isValidULID: {
+    rules: {
+      pattern: {
+        value: regex.ulid,
+        message: "Must be a valid ULID",
+      },
+    },
+    value: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
     expectedOutput: [],
   },
 };

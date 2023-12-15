@@ -1,7 +1,6 @@
 // validateField.test.ts
 import { describe, it, expect } from "vitest";
 import { validateField } from "../index";
-import { RulesObject } from "../types";
 import mocks from "../mocks";
 
 describe("validateField", () => {
@@ -32,6 +31,22 @@ describe("validateField", () => {
         mocks.pattern.containsNumnber.rules
       )
     ).toEqual(mocks.pattern.containsNumnber.expectedOutput);
+
+    expect(
+      validateField(
+        mocks.pattern.isAValidEmail.value,
+        "testField",
+        mocks.pattern.isAValidEmail.rules
+      )
+    ).toEqual(mocks.pattern.isAValidEmail.expectedOutput);
+
+    expect(
+      validateField(
+        mocks.pattern.isAValidEmail2.value,
+        "testField",
+        mocks.pattern.isAValidEmail2.rules
+      )
+    ).toEqual(mocks.pattern.isAValidEmail2.expectedOutput);
 
     expect(
       validateField(
@@ -135,20 +150,44 @@ describe("validateField", () => {
         mocks.custom.equality.rules
       )
     ).toEqual(mocks.custom.equality.expectedOutput);
-    // expect(
-    //   validateField(
-    //     mocks.custom.inequality.value,
-    //     "testField",
-    //     mocks.custom.inequality.rules
-    //   )
-    // ).toEqual(mocks.custom.inequality.expectedOutput);
+    expect(
+      validateField(
+        mocks.custom.inequality.value,
+        "testField",
+        mocks.custom.inequality.rules
+      )
+    ).toEqual(mocks.custom.inequality.expectedOutput);
 
-    // expect(
-    //   validateField(
-    //     mocks.custom.allCaps.value,
-    //     "testField",
-    //     mocks.custom.allCaps.rules
-    //   )
-    // ).toEqual(mocks.custom.allCaps.expectedOutput);
+    expect(
+      validateField(
+        mocks.custom.allCaps.value,
+        "testField",
+        mocks.custom.allCaps.rules
+      )
+    ).toEqual(mocks.custom.allCaps.expectedOutput);
+
+    expect(
+      validateField(
+        mocks.custom.noWhiteSpace.value,
+        "testField",
+        mocks.custom.noWhiteSpace.rules
+      )
+    ).toEqual(mocks.custom.noWhiteSpace.expectedOutput);
+
+    expect(
+      validateField(
+        mocks.custom.noStarAtTheEnd.value,
+        "testField",
+        mocks.custom.noStarAtTheEnd.rules
+      )
+    ).toEqual(mocks.custom.noStarAtTheEnd.expectedOutput);
+
+    expect(
+      validateField(
+        mocks.custom.hasAtLeast3SpecialCharacters.value,
+        "testField",
+        mocks.custom.hasAtLeast3SpecialCharacters.rules
+      )
+    ).toEqual(mocks.custom.hasAtLeast3SpecialCharacters.expectedOutput);
   });
 });

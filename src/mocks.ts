@@ -1,3 +1,5 @@
+import { email } from "./patterns";
+
 const min = {
   pass: {
     rules: {
@@ -39,6 +41,28 @@ const pattern = {
     },
     value: "abc",
     expectedOutput: [{ name: "testField", message: "Must contain a number" }],
+  },
+
+  isAValidEmail: {
+    rules: {
+      pattern: {
+        value: email,
+        message: "Must be a valid email",
+      },
+    },
+    value: "abcgmail.com",
+    expectedOutput: [{ name: "testField", message: "Must be a valid email" }],
+  },
+
+  isAValidEmail2: {
+    rules: {
+      pattern: {
+        value: email,
+        message: "Must be a valid email",
+      },
+    },
+    value: "sss@gmail.com",
+    expectedOutput: [],
   },
 
   containsLetter: {
@@ -163,43 +187,116 @@ const required = {
   },
 };
 
+// return true means error
 const custom = {
   equality: {
     rules: {
       custom: {
-        value(value: number | string) {
+        value: (value: string) => {
           if (value !== "ammar") {
             return true;
           }
           return false;
         },
-        message: "Birth date should be in the past",
+        message: "Name should be ammar",
       },
     },
-    value: "abc",
+    value: "ammar",
     expectedOutput: [],
   },
 
   inequality: {
     rules: {
       custom: {
-        value: (value: string) => value === "abc",
-        message: "Must be abc",
+        value: (value: string) => {
+          if (value !== "ammar") {
+            return true;
+          }
+          return false;
+        },
+        message: "Name should be ammar",
       },
     },
-    value: "abcd",
-    expectedOutput: [{ name: "testField", message: "Must be abc" }],
+    value: "ahmed",
+    expectedOutput: [{ name: "testField", message: "Name should be ammar" }],
   },
 
   allCaps: {
     rules: {
       custom: {
-        value: (value: string) => value === value.toUpperCase(),
-        message: "Must be all caps",
+        value: (value: string) => {
+          if (value !== value.toUpperCase()) {
+            return true;
+          }
+          return false;
+        },
+        message: "Name should be all caps",
       },
     },
-    value: "ABC",
+    value: "AMMAR",
     expectedOutput: [],
+  },
+
+  noWhiteSpace: {
+    rules: {
+      custom: {
+        value: (value: string) => {
+          if (value.includes(" ")) {
+            return true;
+          }
+          return false;
+        },
+        message: "Name should not contain white space",
+      },
+    },
+    value: "ammar",
+    expectedOutput: [],
+  },
+
+  noStarAtTheEnd: {
+    rules: {
+      custom: {
+        value: (value: string) => {
+          if (value.endsWith("*")) {
+            return true;
+          }
+          return false;
+        },
+        message: "Name should not end with *",
+      },
+    },
+    value: "ammar*",
+    expectedOutput: [
+      { name: "testField", message: "Name should not end with *" },
+    ],
+  },
+
+  hasAtLeast3SpecialCharacters: {
+    rules: {
+      custom: {
+        value: (value: string) => {
+          const specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*"];
+          let count = 0;
+          for (let i = 0; i < value.length; i++) {
+            if (specialCharacters.includes(value[i] as string)) {
+              count++;
+            }
+          }
+          if (count >= 3) {
+            return false;
+          }
+          return true;
+        },
+        message: "Name should have at least 3 special characters",
+      },
+    },
+    value: "ammar*",
+    expectedOutput: [
+      {
+        name: "testField",
+        message: "Name should have at least 3 special characters",
+      },
+    ],
   },
 };
 

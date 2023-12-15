@@ -26,6 +26,7 @@ function validateField(
       }
     },
     custom: (value, limit, message) => {
+      // if the custom function limit(value) returns true: push an error
       if (limit(value)) {
         errors.push({ name, message });
       }

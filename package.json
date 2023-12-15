@@ -10,11 +10,16 @@
   "publishConfig": {
     "access": "public"
   },
-  "url": "https://github.com/AmmarHalees/onsubmit",
+  "description": "Simple validation utilities in typescript.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmmarHalees/onsubmit"
+  },
+  "url": "https://www.npmjs.com/package/onsubmit",
   "bugs": {
     "url": "https://github.com/AmmarHalees/onsubmit/issues"
   },
-  "homepage": "https://onsubmit.dev",
+  "homepage": "https://github.com/AmmarHalees/onsubmit",
   "support": {
     "backing": {
       "npm-funding": true
@@ -34,5 +39,17 @@
     "typescript": "^4.9.4",
     "vitest": "^1.0.4"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "keywords": [
+    "onsubmit",
+    "typescript",
+    "form validation",
+    "submit",
+    "form",
+    "react",
+    "reactjs",
+    "react-form",
+    "react-forms",
+    "react-forms-validation"
+  ]
 }

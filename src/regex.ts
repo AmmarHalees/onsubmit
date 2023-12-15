@@ -5,6 +5,8 @@ const uri =
 const cuid = /^c[^\s-]{8,}$/i;
 const ulid = /^[0-9A-HJKMNP-TV-Z]{26}$/;
 
+const here = "";
+
 const alphanumeric = /^[-\w\s]+$/;
 
 const regex = {

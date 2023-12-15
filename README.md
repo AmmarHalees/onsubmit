@@ -1,6 +1,6 @@
 <div align="center">
         <a href="" title="onsubmit library link">
-            <img src="./src/static/waves-outline.svg" alt="onsubmit library logo" />
+            <img src="./src/static/waves-outline-green.svg" alt="onsubmit library logo" />
         </a>
 
 # onSubmit

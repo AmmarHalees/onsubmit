@@ -12,6 +12,10 @@ export interface FieldError {
   message: string;
 }
 
+export interface CustomFunction {
+  (value: string): boolean;
+}
+
 export type ConfigMap = {
   [key: string]: (value: string, limit: any, message: string) => void;
 };

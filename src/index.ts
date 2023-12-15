@@ -1,5 +1,7 @@
-import { RulesObject, FieldError } from "./types";
+import { RulesObject, FieldError, CustomFunction } from "./types";
 import isString from "./utils/isString";
+
+// type CustomFunction = (value: string) => boolean;
 
 function validateField(
   value: string,
@@ -11,7 +13,7 @@ function validateField(
   const configMap: {
     [key: string]: (value: string, limit: any, message: string) => void;
   } = {
-    min: (value, limit, message) => {
+    min: (value: string, limit: number, message: string) => {
       if (
         value &&
         isString(value) &&
@@ -23,23 +25,23 @@ function validateField(
         console.warn("empty or non-string input");
       }
     },
-    max: (value, limit, message) => {
+    max: (value: string, limit: number, message: string) => {
       if (value && !(value.length <= limit)) {
         errors.push({ name, message });
       }
     },
-    pattern: (value, limit, message) => {
+    pattern: (value: string, limit: RegExp, message: string) => {
       if (value.length > 0 && !value.match(limit)) {
         errors.push({ name, message });
       }
     },
-    custom: (value, limit, message) => {
+    custom: (value: string, limit: CustomFunction, message: string) => {
       // if the custom function limit(value) returns true: push an error
       if (limit(value)) {
         errors.push({ name, message });
       }
     },
-    required: (value, limit, message) => {
+    required: (value: string, limit, message: string) => {
       if (value.replace(/\s/g, "") === "" && limit) {
         errors.push({ name, message });
       }

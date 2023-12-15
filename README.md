@@ -1,62 +1,131 @@
-Custom Usage
+<div align="center">
+        <a href="" title="onsubmit library link">
+            <img src="./src/static/waves-outline.svg" alt="onsubmit library logo" />
+        </a>
+
+# onSubmit
+</div>
+
+<div align="center">
 
 
 
-# Validator
+</div>
 
-## Overview
-This TypeScript module provides a flexible validation function, `validate`, which can be used to validate various types of data against a set of predefined rules. The module is extensible, allowing for easy addition of new validation rules.
+<p align="center">
+  <a href="#quickstart">Quickstart</a> | 
+  <a href="#api">API</a> |
+  <a href="#examples">Examples</a>
+</p>
 
-## Function: `validate`
+### Features
 
-### Description
-The `validate` function checks a given value against a set of validation rules. It supports several types of validations including minimum length, maximum length, pattern matching, custom validation, and required field checking.
+- Library-agnostic.
+- Lightweight.
 
-### Usage
 
-```typescript
-import { validate } from './[path-to-validation-module]';
+### Install 
+
+  ```sh
+    npm i onsubmit
+  ```
+
+### Quickstart
+
+
+```Typescript
+import { validateField } from 'onsubmit';
+
+// Example validation rules
+const rulesObject = {
+  min: { value: 3, message: 'Minimum length is 3' },
+  max: { value: 10, message: 'Maximum length is 10' },
+  // ...other rules
+};
+
+// Validate a field
+const errors = validateField('exampleValue', 'fieldName', rulesObject);
+
+// Handle errors
+if (errors.length > 0) {
+  // Process errors
+}
 ```
 
-**Parameters:**
+### API
 
-- `value` (string): The value to be validated.
-- `name` (string): The name of the rule set to apply, as defined in `ruleNameMap`.
-- `t` (any): An additional parameter, the use of which depends on the specific rule set implementation.
+#### Methods
+| Function        | Description                                           | Parameters                                                        | Returns            |
+|-----------------|-------------------------------------------------------|-------------------------------------------------------------------|--------------------|
+| `validateField` | Validates a single form field against specified rules.| `value`: The value of the field.<br>`name`: Name of the field.<br>`rulesObject`: Object containing validation rules. | Array of `FieldError` objects, each containing the `name` of the field and the error `message`. |
+| `validateForm`  | Validates an entire form.                             | `values`: Object with field names as keys and field values as values.<br>`rulesObject`: Object containing validation rules for each field. | Array of `FieldError` objects for the entire form. |
 
-**Return Value:**
+#### Validation Rules
 
-Returns an array of error objects, each containing:
-- `name` (string): The name of the rule that failed.
-- `message` (string): The error message for the failed rule.
+| Rule       | Description                                  | Expected Value     |
+|------------|----------------------------------------------|--------------------|
+| `min`      | Minimum length of the field's value.         | Number (length)    |
+| `max`      | Maximum length of the field's value.         | Number (length)    |
+| `pattern`  | Regex pattern the field's value should match.| RegExp             |
+| `custom`   | Custom validation logic.                     | Function           |
+| `required` | Whether the field is required.               | Boolean            |
 
-If there are no validation errors, the function returns an empty array.
 
-## Extending Validation Rules
+### Examples
 
-New validation rules can be added by extending the `ruleNameMap` object. Each new rule set should be a function that returns an object of `RulesObject` type.
+#### Validate a single field
 
-## Rule Types
+```Typescript
+import { validateField } from 'onsubmit';
 
-The following types of rules can be applied:
+const rulesObject = {
+  min: { value: 3, message: 'Minimum length is 3' },
+  max: { value: 10, message: 'Maximum length is 10' },
+  pattern: { value: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
+  custom: { value: (value) => value !== 'example', message: 'Value cannot be "example"' },
+  required: { value: true, message: 'Field is required' },
+};
 
-- `min`: Checks if the value's length is not less than a specified minimum.
-- `max`: Checks if the value's length does not exceed a specified maximum.
-- `pattern`: Verifies if the value matches a specified regular expression pattern.
-- `custom`: Applies a custom function to the value.
+const errors = validateField('exampleValue', 'fieldName', rulesObject);
+```
 
-```typescript
- custom: {
-   value(value) {
-     if (value !== 'ammar') {
-       return true;
-     }
-     return false;
-   },
-   message: 'Birth date should be in the past'
- }
- ```
+#### Validate an entire form
 
-- `required`: Checks if the value is not just whitespace and is not empty.
+```Typescript
+import { validateForm } from 'onsubmit';
 
-Each rule type is handled by the corresponding function in the `configMap`.
+const rulesObject = {
+  min: { value: 3, message: 'Minimum length is 3' },
+  max: { value: 10, message: 'Maximum length is 10' },
+  pattern: { value: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
+  custom: { value: (value) => value !== 'example', message: 'Value cannot be "example"' },
+  required: { value: true, message: 'Field is required' },
+};
+
+const values = {
+  fieldName1: 'exampleValue1',
+  fieldName2: 'exampleValue2',
+  fieldName3: 'exampleValue3',
+};
+
+const errors = validateForm(values, rulesObject);
+```
+
+#### Validate a form with a custom rule
+
+```Typescript
+
+import { validateForm } from 'onsubmit';
+
+const rulesObject = {
+  custom: { value: (value) => value !== 'example', message: 'Value cannot be "example"' },
+};
+
+const values = {
+  fieldName1: 'exampleValue1',
+  fieldName2: 'exampleValue2',
+  fieldName3: 'exampleValue3',
+};
+
+const errors = validateForm(values, rulesObject);
+```

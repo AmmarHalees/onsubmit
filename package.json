@@ -6,6 +6,7 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "private": false,
   "url": "https://github.com/AmmarHalees/onsubmit",
   "bugs": {
     "url": "https://github.com/AmmarHalees/onsubmit/issues"

@@ -1,20 +1,32 @@
 {
-    "compilerOptions": {
-      /* Base Options: */
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "target": "es2022",
-      "allowJs": true,
-      "resolveJsonModule": true,
-      "moduleDetection": "force",
-      /* Strictness */
-      "strict": true,
-      "noUncheckedIndexedAccess": true,
-      /* If NOT transpiling with TypeScript: */
-      "moduleResolution": "Node",
-      "module": "ESNext",
-      "noEmit": true,
-      /* If your code runs in the DOM: */
-      "lib": ["es2022", "dom", "dom.iterable"],
-    }
-  }
+  "compilerOptions": {
+    /* Base Options: */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedParameters": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    /* If NOT transpiling with TypeScript: */
+    "moduleResolution": "Node",
+    "module": "ESNext",
+    "noEmit": true,
+    "allowUnreachableCode": false,
+    /* If your code runs in the DOM: */
+    "lib": ["es2022", "dom", "dom.iterable"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "process.d.ts"
+  ],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

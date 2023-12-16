@@ -31,15 +31,15 @@
     "lint": "tsc",
     "dev": "vitest",
     "test": "vitest run",
-    "ci": "pnpm run lint && pnpm run test && pnpm run build"
+    "ci": "pnpm run lint && pnpm run test && pnpm run build && bundlesize"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
+    "bundlesize": "^0.18.1",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4",
     "vitest": "^1.0.4"
   },
-  "dependencies": {},
   "keywords": [
     "onsubmit",
     "typescript",

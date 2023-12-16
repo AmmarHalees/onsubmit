@@ -1,0 +1,9 @@
+{
+  "files": [
+    {
+      "path": "./dist/index.js",
+      "maxSize": "0.5 kB",
+      "compression": "none"
+    }
+  ]
+}

@@ -31,6 +31,7 @@
     "lint": "tsc",
     "dev": "vitest",
     "test": "vitest run",
+    "trace": "tsc --generateTrace trace --incremental false && cat trace/trace.json",
     "ci": "pnpm run lint && pnpm run test && pnpm run build && bundlesize"
   },
   "devDependencies": {

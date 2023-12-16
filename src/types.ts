@@ -4,7 +4,11 @@ export interface Rule {
 }
 
 export interface RulesObject {
-  [key: string]: Rule;
+  required?: Rule;
+  min?: Rule;
+  max?: Rule;
+  pattern?: Rule;
+  custom?: Rule;
 }
 
 export interface FieldError {

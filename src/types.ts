@@ -20,6 +20,10 @@ export interface CustomFunction {
   (value: string): boolean;
 }
 
+export interface NameRuleMap  {
+  [key: string]: RulesObject;
+};
+
 export type ConfigMap = {
   [key: string]: (value: string, limit: any, message: string) => void;
 };

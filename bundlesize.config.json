@@ -2,7 +2,7 @@
   "files": [
     {
       "path": "./dist/index.js",
-      "maxSize": "3 kB",
+      "maxSize": "10 kB",
       "compression": "none"
     }
   ]

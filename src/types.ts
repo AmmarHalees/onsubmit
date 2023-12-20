@@ -5,8 +5,8 @@ export interface Rule {
 
 export interface RulesObject {
   required?: Rule;
-  min?: Rule;
-  max?: Rule;
+  minLength?: Rule;
+  maxLength?: Rule;
   pattern?: Rule;
   custom?: Rule;
 }
@@ -18,6 +18,10 @@ export interface FieldError {
 
 export interface CustomFunction {
   (value: string): boolean;
+}
+
+export interface FormDataObject {
+  [key: string]: string;
 }
 
 export interface NameRuleMap  {

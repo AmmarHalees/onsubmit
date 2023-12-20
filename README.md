@@ -43,8 +43,8 @@ import { validateField } from 'onsubmit';
 
 // Example validation rules
 const rulesObject = {
-  min: { value: 3, message: 'Minimum length is 3' },
-  max: { value: 10, message: 'Maximum length is 10' },
+  minLength: { value: 3, message: 'Minimum length is 3' },
+  maxLength: { value: 10, message: 'Maximum length is 10' },
   // ...other rules
 };
 
@@ -69,8 +69,8 @@ if (errors.length > 0) {
 
 | Rule       | Description                                  | Expected Value     |
 |------------|----------------------------------------------|--------------------|
-| `min`      | Minimum length of the field's value.         | Number (length)    |
-| `max`      | Maximum length of the field's value.         | Number (length)    |
+| `minLength`      | Minimum length of the field's value.         | Number (length)    |
+| `maxLength`      | Maximum length of the field's value.         | Number (length)    |
 | `pattern`  | Regex pattern the field's value should match.| RegExp             |
 | `custom`   | Custom validation logic.                     | Function           |
 | `required` | Whether the field is required.               | Boolean            |
@@ -85,8 +85,8 @@ if (errors.length > 0) {
 import { validateField } from 'onsubmit';
 
 const rulesObject = {
-  min: { value: 3, message: 'Minimum length is 3' },
-  max: { value: 10, message: 'Maximum length is 10' },
+  minLength: { value: 3, message: 'Minimum length is 3' },
+  maxLength: { value: 10, message: 'Maximum length is 10' },
   pattern: { value: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
   custom: { value: (value) => value !== 'example', message: 'Value cannot be "example"' },
   required: { value: true, message: 'Field is required' },
@@ -101,8 +101,8 @@ const errors = validateField('exampleValue', 'fieldName', rulesObject);
 import { validateForm } from 'onsubmit';
 
 const rulesObject = {
-  min: { value: 3, message: 'Minimum length is 3' },
-  max: { value: 10, message: 'Maximum length is 10' },
+  minLength: { value: 3, message: 'Minimum length is 3' },
+  maxLength: { value: 10, message: 'Maximum length is 10' },
   pattern: { value: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
   custom: { value: (value) => value !== 'example', message: 'Value cannot be "example"' },
   required: { value: true, message: 'Field is required' },

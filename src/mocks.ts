@@ -1,34 +1,34 @@
 import regex from "./regex";
 import constants from "./constants.json";
 
-const min = {
+const minLength = {
   pass: {
     rules: {
-      min: { value: 3, message: "Minimum length is 3" },
+      minLength: { value: 3, message: "Minimum length is 3" },
     },
     value: "ab",
     expectedOutput: [{ name: "testField", message: "Minimum length is 3" }],
   },
   fail: {
     rules: {
-      min: { value: 3, message: "Minimum length is 3" },
+      minLength: { value: 3, message: "Minimum length is 3" },
     },
     value: "abc",
     expectedOutput: [],
   },
 };
 
-const max = {
+const maxLength = {
   pass: {
     rules: {
-      max: { value: 3, message: "Maximum length is 3" },
+      maxLength: { value: 3, message: "Maximum length is 3" },
     },
     value: "abcd",
     expectedOutput: [{ name: "testField", message: "Maximum length is 3" }],
   },
   fail: {
     rules: {
-      max: { value: 3, message: "Maximum length is 3" },
+      maxLength: { value: 3, message: "Maximum length is 3" },
     },
     value: "abc",
     expectedOutput: [],
@@ -351,11 +351,11 @@ const multipleRules = {
         value: true,
         message: "Name is required",
       },
-      min: {
+      minLength: {
         value: 6,
         message: "Name least 6 characters long",
       },
-      max: {
+      maxLength: {
         value: 10,
         message: "Name should not exceed 10 characters",
       },
@@ -387,11 +387,11 @@ const multipleRules = {
         value: true,
         message: "Name is required",
       },
-      min: {
+      minLength: {
         value: 6,
         message: "Name least 6 characters long",
       },
-      max: {
+      maxLength: {
         value: 20,
         message: "Name should not exceed 20 characters",
       },
@@ -419,11 +419,11 @@ const multipleRules = {
         value: true,
         message: "Name is required",
       },
-      min: {
+      minLength: {
         value: 6,
         message: "Name least 6 characters long",
       },
-      max: {
+      maxLength: {
         value: 20,
         message: "Name should not exceed 20 characters",
       },
@@ -449,8 +449,8 @@ const multipleRules = {
 };
 
 const mocks = {
-  min,
-  max,
+  minLength,
+  maxLength,
   pattern,
   required,
   custom,

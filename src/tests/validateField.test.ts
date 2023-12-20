@@ -5,21 +5,37 @@ import mocks from "../mocks";
 describe("validateField", () => {
   it("should validate minimum length", () => {
     expect(
-      validateField(mocks.min.pass.value, "testField", mocks.min.pass.rules)
-    ).toEqual(mocks.min.pass.expectedOutput);
+      validateField(
+        mocks.minLength.pass.value,
+        "testField",
+        mocks.minLength.pass.rules
+      )
+    ).toEqual(mocks.minLength.pass.expectedOutput);
 
     expect(
-      validateField(mocks.min.fail.value, "testField", mocks.min.fail.rules)
+      validateField(
+        mocks.minLength.fail.value,
+        "testField",
+        mocks.minLength.fail.rules
+      )
     ).toEqual([]);
   });
 
   it("should validate maximum length", () => {
     expect(
-      validateField(mocks.max.pass.value, "testField", mocks.max.pass.rules)
-    ).toEqual(mocks.max.pass.expectedOutput);
+      validateField(
+        mocks.maxLength.pass.value,
+        "testField",
+        mocks.maxLength.pass.rules
+      )
+    ).toEqual(mocks.maxLength.pass.expectedOutput);
     expect(
-      validateField(mocks.max.fail.value, "testField", mocks.max.fail.rules)
-    ).toEqual(mocks.max.fail.expectedOutput);
+      validateField(
+        mocks.maxLength.fail.value,
+        "testField",
+        mocks.maxLength.fail.rules
+      )
+    ).toEqual(mocks.maxLength.fail.expectedOutput);
   });
 
   it("should validate pattern", () => {

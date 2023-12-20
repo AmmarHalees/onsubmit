@@ -10,12 +10,12 @@ export function validateField(
   const configMap: {
     [key: string]: (value: string, limit: any, message: string) => void;
   } = {
-    min: (value: string, limit: number, message: string) => {
+    minLength: (value: string, limit: number, message: string) => {
       if (value && value.length > 0 && !(value.length >= limit)) {
         errors.push({ name, message });
       }
     },
-    max: (value: string, limit: number, message: string) => {
+    maxLength: (value: string, limit: number, message: string) => {
       if (value && !(value.length <= limit)) {
         errors.push({ name, message });
       }

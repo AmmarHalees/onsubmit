@@ -13,7 +13,8 @@
 <p align="center">
   <a href="#quickstart">Quickstart</a> | 
   <a href="#api">API</a> |
-  <a href="#examples">Examples</a>
+  <a href="#examples">Examples</a> |
+  <a target="_blank" href="https://on-submit-website.vercel.app/">Demo</a>
 </p>
 
 ## Description

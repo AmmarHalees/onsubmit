@@ -1,7 +1,7 @@
 import { validateForm } from "../src/core/validateForm";
 
 const data = {
-  firstName: "Ammar",
+  sss: "Ammar",
   lastName: "Halees",
   portfolio: "https://ssss.com",
   bio: "wdwdsss",

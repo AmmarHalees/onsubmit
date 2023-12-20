@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { validateField } from "../index";
-import mocks from "../mocks";
+import mocks from "../mocks/validateField.mocks";
 
 describe("validateField", () => {
   it("should validate minimum length", () => {

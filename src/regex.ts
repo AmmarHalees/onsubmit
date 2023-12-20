@@ -7,12 +7,15 @@ const ulid = /^[0-9A-HJKMNP-TV-Z]{26}$/;
 
 const alphanumeric = /^[-\w\s]+$/;
 
+const kebabCase = /^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/;
+
 const regex = {
   email,
   uri,
   alphanumeric,
   cuid,
   ulid,
+  kebabCase,
 };
 
 export default regex;

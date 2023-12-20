@@ -1,5 +1,5 @@
-import regex from "./regex";
-import constants from "./constants.json";
+import regex from "../regex";
+import constants from "../constants.json";
 
 const minLength = {
   pass: {

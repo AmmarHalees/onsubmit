@@ -1,28 +1,7 @@
+import { doKeysMatch } from "../internal/do-keys-match";
 import { FieldError, NameRuleMap, FormDataObject, RulesObject } from "../types";
 import isObject from "../utils/isObject";
 import { validateField } from "./validateField";
-
-function doKeysMatch(
-  data: FormDataObject | FormData,
-  NameRuleMap: NameRuleMap
-) {
-  const dataKeys = Object.keys(data);
-  const NameRuleMapKeys = Object.keys(NameRuleMap);
-
-  if (dataKeys.length !== NameRuleMapKeys.length) {
-    throw new Error(
-      `Data keys and NameRuleMap keys do not match. Data keys: ${dataKeys}, NameRuleMap keys: ${NameRuleMapKeys}`
-    );
-  }
-
-  dataKeys.forEach((key) => {
-    if (!NameRuleMapKeys.includes(key)) {
-      throw new Error(
-        `Data keys and NameRuleMap keys do not match. Data keys: ${dataKeys}, NameRuleMap keys: ${NameRuleMapKeys}`
-      );
-    }
-  });
-}
 
 export function validateForm(
   data: FormDataObject | FormData,

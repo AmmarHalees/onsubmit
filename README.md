@@ -16,11 +16,14 @@
   <a href="#examples">Examples</a>
 </p>
 
+## Description
+
+`onsubmit` provides a simple and headless interface for validating form fields, with emphasis on security.
+
 ### Features
 
 - Library/Context-agnostic.
 - Light-weight.
-- Ephemral.
 - Simple API.
 - Zero dependencies.
 

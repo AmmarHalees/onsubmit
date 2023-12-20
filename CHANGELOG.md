@@ -1,5 +1,11 @@
 # onsubmit
 
+## 0.0.6
+
+### Patch Changes
+
+- 999467a: Naming conventions, validateForm and some more
+
 ## 0.0.5
 
 ### Patch Changes

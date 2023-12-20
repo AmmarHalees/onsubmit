@@ -18,4 +18,5 @@ describe("validateForm", () => {
     );
     expect(errors).toEqual(mocks.example_from_2.expectedOutput);
   });
+
 });

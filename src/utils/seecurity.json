@@ -1,0 +1,29 @@
+{
+  "FILE_INPUT_SECURITY_RULES": {
+    "MAX_NAME_LENGTH": 200,
+    "DISALLOWED_FILE_TYPES": ["htaccess"]
+  },
+  "BLACKLIST": {
+    "CHARACTERS": ["\""],
+    "STRINGS": [
+      "eval(",
+      "exec(",
+      "system(",
+      "passthru(",
+      "shell_exec(",
+      "phpinfo(",
+      "popen(",
+      "proc_open(",
+      "pcntl_exec(",
+      "assert(",
+      "<?php",
+      "?>",
+      "<?",
+      "?>",
+      "<script",
+      "innerHTML",
+      "javascript:",
+      "asfunction:"
+    ]
+  }
+}

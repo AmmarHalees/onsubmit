@@ -23,7 +23,6 @@
 
 ### Features
 
-- Library/Context-agnostic.
 - Light-weight.
 - Simple API.
 - Zero dependencies.

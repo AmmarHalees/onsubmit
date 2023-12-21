@@ -135,17 +135,6 @@ const values = {
 const errors = validateForm(values, rulesObject);
 ```
 
-## FAQ
-
-### Which rule object has precedence?
-
-The `required` rule has the highest precedence. The remaining rules are evaluated in the order they are specified in the `rulesObject`.
-
-
-
-
-
-
 ## Types 
   
   ```Typescript
@@ -167,8 +156,27 @@ The `required` rule has the highest precedence. The remaining rules are evaluate
   };
   ```
 
+## Security
 
-### Future Plans
+`onsubmit` provides the opt-out `onlySecure` rule, which is designed to mitigate the most common attacks, such as: 
 
-- Add `fileList` validation rules.
-- Expose `isSecure` APIs.
+1. Reflected Cross Site Scripting (Non-presistent or Type 1 XSS)
+2. Stored Cross Site Scripting
+3. DOM based Cross Site Scripting
+4. Cross Site Flashing
+
+
+
+## FAQ
+
+### Which rule object has precedence?
+
+The `required` rule has the highest precedence. The remaining rules are evaluated in the order they are specified in the `rulesObject`.
+
+
+
+## TODO
+
+1. minDate
+2. maxDate
+3. fileList: { minSize, maxSize, allowedTypes, fileName }

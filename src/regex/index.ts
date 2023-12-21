@@ -9,7 +9,7 @@ const alphanumeric = /^[-\w\s]+$/;
 
 const kebabCase = /^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/;
 
-const regex = {
+const _regex = {
   email,
   uri,
   alphanumeric,
@@ -18,4 +18,4 @@ const regex = {
   kebabCase,
 };
 
-export default regex;
+export default _regex;

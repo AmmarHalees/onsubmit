@@ -1,4 +1,4 @@
-import regex from "../regex";
+import _regex from "../regex";
 
 const example_from_1 = {
   rules: {
@@ -16,7 +16,7 @@ const example_from_1 = {
         message: "Maximum length is 10",
       },
       pattern: {
-        value: regex.alphanumeric,
+        value: _regex.alphanumeric,
         message: "Only alphanumeric characters are allowed",
       },
     },
@@ -34,7 +34,7 @@ const example_from_1 = {
         message: "Maximum length is 10",
       },
       pattern: {
-        value: regex.alphanumeric,
+        value: _regex.alphanumeric,
         message: "Only alphanumeric characters are allowed",
       },
     },
@@ -44,7 +44,7 @@ const example_from_1 = {
         message: "Email is required",
       },
       pattern: {
-        value: regex.email,
+        value: _regex.email,
         message: "Email is invalid",
       },
     },
@@ -54,7 +54,7 @@ const example_from_1 = {
         message: "Age is required",
       },
       pattern: {
-        value: regex.alphanumeric,
+        value: _regex.alphanumeric,
         message: "Only alphanumeric characters are allowed",
       },
     },
@@ -102,7 +102,7 @@ const example_from_2 = {
         message: "Maximum length is 10",
       },
       pattern: {
-        value: regex.alphanumeric,
+        value: _regex.alphanumeric,
         message: "Only alphanumeric characters are allowed",
       },
     },
@@ -120,7 +120,7 @@ const example_from_2 = {
         message: "Maximum length is 10",
       },
       pattern: {
-        value: regex.alphanumeric,
+        value: _regex.alphanumeric,
         message: "Only alphanumeric characters are allowed",
       },
     },
@@ -138,7 +138,7 @@ const example_from_2 = {
         message: "Maximum length is 10",
       },
       pattern: {
-        value: regex.kebabCase,
+        value: _regex.kebabCase,
         message: "Only kebab case",
       },
     },

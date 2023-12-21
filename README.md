@@ -136,6 +136,17 @@ const values = {
 const errors = validateForm(values, rulesObject);
 ```
 
+## FAQ
+
+### Which rule object has precedence?
+
+The `required` rule has the highest precedence. The remaining rules are evaluated in the order they are specified in the `rulesObject`.
+
+
+
+
+
+
 ## Types 
   
   ```Typescript

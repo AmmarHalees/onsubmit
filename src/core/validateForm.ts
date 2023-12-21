@@ -1,6 +1,6 @@
 import { doKeysMatch } from "../internal/do-keys-match";
 import { FieldError, NameRuleMap, FormDataObject, RulesObject } from "../types";
-import utils from "../utils";
+import _utils from "../utils";
 import { validateField } from "./validateField";
 
 export function validateForm(
@@ -13,17 +13,17 @@ export function validateForm(
 
   if (!NameRuleMap) throw new Error("NameRuleMap is required");
   if (!data) throw new Error("Form Data is required");
-  if (utils.isObject(data) && Object.keys(data).length === 0)
+  if (_utils.isObject(data) && Object.keys(data).length === 0)
     throw new Error("Form Data is required");
 
-  if (!utils.isObject(data))
+  if (!_utils.isObject(data))
     throw new Error(`Form Data cannot be ${typeof data}`);
 
-  if (utils.isObject(NameRuleMap) && Object.keys(NameRuleMap).length === 0) {
+  if (_utils.isObject(NameRuleMap) && Object.keys(NameRuleMap).length === 0) {
     throw new Error("NameRuleMap is required");
   }
 
-  if (!utils.isObject(NameRuleMap)) {
+  if (!_utils.isObject(NameRuleMap)) {
     throw new Error(`NameRuleMap cannot be ${typeof NameRuleMap}`);
   }
 

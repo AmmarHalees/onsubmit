@@ -40,20 +40,15 @@
 ```Typescript
 import { validateField } from 'onsubmit';
 
-// Example validation rules
-const rulesObject = {
+const firstNameRules = {
+  required: { value: true, message: 'First Name is required' },
   minLength: { value: 3, message: 'Minimum length is 3' },
   maxLength: { value: 10, message: 'Maximum length is 10' },
-  // ...other rules
 };
 
-// Validate a field
-const errors = validateField('exampleValue', 'fieldName', rulesObject);
+// recieve an array of errors
+const errors = validateField('Ammar Halees', 'firstName', rulesObject);
 
-// Handle errors
-if (errors.length > 0) {
-  // Process errors
-}
 ```
 
 ### API
@@ -62,7 +57,7 @@ if (errors.length > 0) {
 | Function        | Description                                           | Parameters                                                        | Returns            |
 |-----------------|-------------------------------------------------------|-------------------------------------------------------------------|--------------------|
 | `validateField` | Validates a single form field against specified rules.| `value`: The string  value of the field.<br>`name`: Name of the field.<br>`rulesObject`: Object containing validation rules. | Array of `FieldError` objects, each containing the `name` of the field and the error `message`. |
-| `validateForm`  | Validates an entire form.                             | `values`: Object with field names as keys and field values as values.<br>`rulesObject`: Object containing validation rules for each field. | Array of `FieldError` objects for the entire form. |
+| `validateForm`  | Validates an entire form.                             | `values`: A key-value pair object of field names and values.<br>`rulesObject`: A key-value object which maps field names to their rules . | Array of `FieldError` objects for the entire form. |
 
 #### Validation Rules
 
@@ -108,9 +103,9 @@ const rulesObject = {
 };
 
 const values = {
-  fieldName1: 'exampleValue1',
-  fieldName2: 'exampleValue2',
-  fieldName3: 'exampleValue3',
+  firstName: 'Ammar',
+  lastName: 'Halees',
+  email: 'ammar@company.co',
 };
 
 const errors = validateForm(values, rulesObject);
@@ -150,25 +145,49 @@ The `required` rule has the highest precedence. The remaining rules are evaluate
   
   ```Typescript
 
-  CustomFunction = (value: string) => boolean;
+export interface Rule {
+  value: any;
+  message: string;
+}
 
-  Rule = {
-    value: string | number | boolean | RegExp | CustomFunction;
-    message: string;
-  };
+export interface RulesObject {
+  required?: Rule;
+  minLength?: Rule;
+  maxLength?: Rule;
+  pattern?: Rule;
+  custom?: Rule;
+}
 
-  FieldError = {
-    name: string;
-    message: string;
-  };
+export interface FieldError {
+  name: string;
+  message: string;
+}
 
-  RulesObject = {
-    [key: string]: Rule;
-  };
+export interface CustomFunction {
+  (value: string): boolean;
+}
+
+export interface FormDataObject {
+  [key: string]: string;
+}
+
+export interface NameRuleMap  {
+  [key: string]: RulesObject;
+};
+
+export type ConfigMap = {
+  [key: string]: (value: string, limit: any, message: string) => void;
+};
+
+
+export type RuleLimit = string | number | RegExp | CustomFunction;
+
   ```
 
 
 ### Future Plans
 
-- Add `fileList` validation rules.
-- Expose `isSecure` APIs.
+- `onlySecure`: In PR.
+- `minDate`
+- `maxDate`
+- `file` : { minSize, maxSize, type, name }

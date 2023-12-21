@@ -1,6 +1,5 @@
 import { RulesObject, FieldError, CustomFunction } from "../types";
-import isNullOrUndefined from "../utils/isNullOrUndefined";
-import isString from "../utils/isString";
+import utils from "../utils";
 
 export function validateField(
   value: string,
@@ -13,7 +12,7 @@ export function validateField(
     [key: string]: (value: string, limit: any, message: string) => void;
   } = {
     minLength: (value: string, limit: number, message: string) => {
-      if (!isString(value))
+      if (!utils.isString(value))
         throw new Error(
           "File value must be a string to be validated with minLength"
         );

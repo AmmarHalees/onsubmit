@@ -47,7 +47,7 @@ const firstNameRules = {
 };
 
 // recieve an array of errors
-const errors = validateField('Ammar Halees', 'firstName', rulesObject);
+const errors = validateField('Ammar', 'firstName', rulesObject);
 
 ```
 

@@ -167,7 +167,7 @@ export interface CustomFunction {
   (value: string): boolean;
 }
 
-export interface FormDataObject {
+export interface KeyValuePair {
   [key: string]: string | FormDataEntryValue;
 }
 

@@ -1,12 +1,9 @@
 import { doKeysMatch } from "../internal/do-keys-match";
-import { FieldError, NameRuleMap, FormDataObject, RulesObject } from "../types";
+import { FieldError, NameRuleMap, KeyValuePair, RulesObject } from "../types";
 import _utils from "../utils";
 import { validateField } from "./validateField";
 
-export function validateForm(
-  data: FormDataObject | FormData,
-  NameRuleMap: NameRuleMap
-) {
+export function validateForm(data: KeyValuePair | FormData, NameRuleMap: NameRuleMap) {
   const errors: Array<FieldError> = [];
 
   /*-------- Error Guards --------*/

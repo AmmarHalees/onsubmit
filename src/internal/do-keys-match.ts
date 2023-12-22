@@ -1,9 +1,6 @@
-import { FormDataObject, NameRuleMap } from "../types";
+import { KeyValuePair, NameRuleMap } from "../types";
 
-export function doKeysMatch(
-  data: FormDataObject | FormData,
-  NameRuleMap: NameRuleMap
-) {
+export function doKeysMatch(data: KeyValuePair | FormData, NameRuleMap: NameRuleMap) {
   const dataKeys = Object.keys(data);
   const NameRuleMapKeys = Object.keys(NameRuleMap);
 

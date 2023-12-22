@@ -1,5 +1,11 @@
 # onsubmit
 
+## 0.0.11
+
+### Patch Changes
+
+- ae9488d: package
+
 ## 0.0.10
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # onsubmit
 
+## 0.0.12
+
+### Patch Changes
+
+- 437157f: fixes
+
 ## 0.0.11
 
 ### Patch Changes

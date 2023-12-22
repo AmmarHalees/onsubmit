@@ -1,4 +1,11 @@
-import { RulesObject, FieldError, CustomFunction } from "../types";
+import {
+  RulesObject,
+  FieldError,
+  CustomFunction,
+  ConfigMap,
+  ValidationFunction,
+  Criterion,
+} from "../types";
 import _utils from "../utils";
 
 export function validateField(
@@ -8,9 +15,7 @@ export function validateField(
 ): Array<FieldError> {
   const errors: Array<FieldError> = [];
 
-  const configMap: {
-    [key: string]: (value: string, criterion: any, message: string) => void;
-  } = {
+  const configMap: ConfigMap = {
     minLength: (value: string, criterion: number, message: string) => {
       if (!_utils.isString(value))
         throw new Error(
@@ -44,11 +49,24 @@ export function validateField(
     },
   };
 
+  function isKeyOfConfigMap(key: string): key is keyof ConfigMap {
+    return key in configMap;
+  }
+
   try {
     Object.entries(rulesObject).forEach(([key, { criterion, message }]) => {
-      if (configMap[key] && configMap[key] !== undefined) {
-        const defaultFunction = () => {};
-        (configMap[key] || defaultFunction)(value, criterion, message);
+      if (isKeyOfConfigMap(key)) {
+        const validationFunction = configMap[
+          key as keyof ConfigMap
+        ] as ValidationFunction<Criterion>;
+
+        if (validationFunction) {
+          validationFunction(value, criterion, message);
+        } else {
+          throw new Error(
+            `Validation function for ${key} does not exist in configMap`
+          );
+        }
       }
     });
   } catch (e) {

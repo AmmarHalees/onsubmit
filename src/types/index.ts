@@ -5,6 +5,8 @@ export interface Rule {
   message: string;
 }
 
+export type FormDataShape = KeyValuePair | { [k: string]: FormDataEntryValue };
+
 export interface RulesObject {
   required?: Rule;
   minLength?: Rule;

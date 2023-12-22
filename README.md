@@ -190,5 +190,7 @@ export type RuleLimit = string | number | RegExp | CustomFunction;
 - `onlySecure`: In PR.
 - `minDate`
 - `maxDate`
+- `minTime`
+- `maxTime`
 - Allow for multiple patterns
 - `file` : { minSize, maxSize, type, name }

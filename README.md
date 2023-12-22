@@ -168,7 +168,7 @@ export interface CustomFunction {
 }
 
 export interface FormDataObject {
-  [key: string]: string;
+  [key: string]: string | FormDataEntryValue;
 }
 
 export interface NameRuleMap  {

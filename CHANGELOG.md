@@ -1,5 +1,11 @@
 # onsubmit
 
+## 0.0.8
+
+### Patch Changes
+
+- 1dc30fe: changed entry point for package
+
 ## 0.0.7
 
 ### Patch Changes

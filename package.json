@@ -30,7 +30,7 @@
     "./types": "./dist/index.d.ts"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts && tsup src/types/index.ts --format cjs,esm --dts --outDir dist/types",
     "release": "pnpm run ci && changeset publish",
     "lint": "tsc",
     "dev": "vitest",

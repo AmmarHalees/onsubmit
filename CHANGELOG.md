@@ -1,5 +1,11 @@
 # onsubmit
 
+## 0.0.9
+
+### Patch Changes
+
+- 136f1d1: updated package.json
+
 ## 0.0.8
 
 ### Patch Changes

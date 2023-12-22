@@ -6,7 +6,7 @@ describe("validateField", () => {
   it("should validate minimum length", () => {
     expect(
       validateField(
-        mocks.minLength.pass.value,
+        mocks.minLength.pass.input,
         "testField",
         mocks.minLength.pass.rules
       )
@@ -14,7 +14,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.minLength.fail.value,
+        mocks.minLength.fail.input,
         "testField",
         mocks.minLength.fail.rules
       )
@@ -24,14 +24,14 @@ describe("validateField", () => {
   it("should validate maximum length", () => {
     expect(
       validateField(
-        mocks.maxLength.pass.value,
+        mocks.maxLength.pass.input,
         "testField",
         mocks.maxLength.pass.rules
       )
     ).toEqual(mocks.maxLength.pass.expectedOutput);
     expect(
       validateField(
-        mocks.maxLength.fail.value,
+        mocks.maxLength.fail.input,
         "testField",
         mocks.maxLength.fail.rules
       )
@@ -41,7 +41,7 @@ describe("validateField", () => {
   it("should validate pattern", () => {
     expect(
       validateField(
-        mocks.pattern.containsNumnber.value,
+        mocks.pattern.containsNumnber.input,
         "testField",
         mocks.pattern.containsNumnber.rules
       )
@@ -49,7 +49,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.pattern.isAValidEmail.value,
+        mocks.pattern.isAValidEmail.input,
         "testField",
         mocks.pattern.isAValidEmail.rules
       )
@@ -57,7 +57,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.pattern.isAValidEmail2.value,
+        mocks.pattern.isAValidEmail2.input,
         "testField",
         mocks.pattern.isAValidEmail2.rules
       )
@@ -65,7 +65,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.pattern.containsLetter.value,
+        mocks.pattern.containsLetter.input,
         "testField",
         mocks.pattern.containsLetter.rules
       )
@@ -73,7 +73,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.pattern.containsSpecialCharacter.value,
+        mocks.pattern.containsSpecialCharacter.input,
         "testField",
         mocks.pattern.containsSpecialCharacter.rules
       )
@@ -81,7 +81,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.pattern.containsCapitalLetter.value,
+        mocks.pattern.containsCapitalLetter.input,
         "testField",
         mocks.pattern.containsCapitalLetter.rules
       )
@@ -89,7 +89,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.pattern.containsSmallLetter.value,
+        mocks.pattern.containsSmallLetter.input,
         "testField",
         mocks.pattern.containsSmallLetter.rules
       )
@@ -97,7 +97,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber.value,
+        mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber.input,
         "testField",
         mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber.rules
       )
@@ -107,7 +107,7 @@ describe("validateField", () => {
     );
     expect(
       validateField(
-        mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber2.value,
+        mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber2.input,
         "testField",
         mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber2.rules
       )
@@ -117,7 +117,7 @@ describe("validateField", () => {
     );
     expect(
       validateField(
-        mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber3.value,
+        mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber3.input,
         "testField",
         mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber3.rules
       )
@@ -127,7 +127,7 @@ describe("validateField", () => {
     );
     expect(
       validateField(
-        mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber4.value,
+        mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber4.input,
         "testField",
         mocks.pattern.containsCapitalLetterSpecialCharacterAndNumber4.rules
       )
@@ -137,28 +137,28 @@ describe("validateField", () => {
     );
     expect(
       validateField(
-        mocks.pattern.isValidURI.value,
+        mocks.pattern.isValidURI.input,
         "testField",
         mocks.pattern.isValidURI.rules
       )
     ).toEqual(mocks.pattern.isValidURI.expectedOutput);
     expect(
       validateField(
-        mocks.pattern.isValidCUID.value,
+        mocks.pattern.isValidCUID.input,
         "testField",
         mocks.pattern.isValidCUID.rules
       )
     ).toEqual(mocks.pattern.isValidCUID.expectedOutput);
     expect(
       validateField(
-        mocks.pattern.isValidCUID2.value,
+        mocks.pattern.isValidCUID2.input,
         "testField",
         mocks.pattern.isValidCUID2.rules
       )
     ).toEqual(mocks.pattern.isValidCUID2.expectedOutput);
     expect(
       validateField(
-        mocks.pattern.isValidULID.value,
+        mocks.pattern.isValidULID.input,
         "testField",
         mocks.pattern.isValidULID.rules
       )
@@ -168,14 +168,14 @@ describe("validateField", () => {
   it("should validate required", () => {
     expect(
       validateField(
-        mocks.required.pass.value,
+        mocks.required.pass.input,
         "testField",
         mocks.required.pass.rules
       )
     ).toEqual(mocks.required.pass.expectedOutput);
     expect(
       validateField(
-        mocks.required.fail.value,
+        mocks.required.fail.input,
         "testField",
         mocks.required.fail.rules
       )
@@ -185,14 +185,14 @@ describe("validateField", () => {
   it("should validate custom", () => {
     expect(
       validateField(
-        mocks.custom.equality.value,
+        mocks.custom.equality.input,
         "testField",
         mocks.custom.equality.rules
       )
     ).toEqual(mocks.custom.equality.expectedOutput);
     expect(
       validateField(
-        mocks.custom.inequality.value,
+        mocks.custom.inequality.input,
         "testField",
         mocks.custom.inequality.rules
       )
@@ -200,7 +200,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.custom.allCaps.value,
+        mocks.custom.allCaps.input,
         "testField",
         mocks.custom.allCaps.rules
       )
@@ -208,7 +208,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.custom.noWhiteSpace.value,
+        mocks.custom.noWhiteSpace.input,
         "testField",
         mocks.custom.noWhiteSpace.rules
       )
@@ -216,7 +216,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.custom.noStarAtTheEnd.value,
+        mocks.custom.noStarAtTheEnd.input,
         "testField",
         mocks.custom.noStarAtTheEnd.rules
       )
@@ -224,7 +224,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.custom.hasAtLeast3SpecialCharacters.value,
+        mocks.custom.hasAtLeast3SpecialCharacters.input,
         "testField",
         mocks.custom.hasAtLeast3SpecialCharacters.rules
       )
@@ -234,7 +234,7 @@ describe("validateField", () => {
   it("should validate multiple rules", () => {
     expect(
       validateField(
-        mocks.multipleRules.case1.value,
+        mocks.multipleRules.case1.input,
         "testField",
         mocks.multipleRules.case1.rules
       )
@@ -242,7 +242,7 @@ describe("validateField", () => {
 
     expect(
       validateField(
-        mocks.multipleRules.case2.value,
+        mocks.multipleRules.case2.input,
         "testField",
         mocks.multipleRules.case2.rules
       )

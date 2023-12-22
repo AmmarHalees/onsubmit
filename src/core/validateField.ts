@@ -9,50 +9,48 @@ export function validateField(
   const errors: Array<FieldError> = [];
 
   const configMap: {
-    [key: string]: (value: string, limit: any, message: string) => void;
+    [key: string]: (value: string, criterion: any, message: string) => void;
   } = {
-    minLength: (value: string, limit: number, message: string) => {
+    minLength: (value: string, criterion: number, message: string) => {
       if (!_utils.isString(value))
         throw new Error(
           "File value must be a string to be validated with minLength"
         );
 
-      if (value && value.length > 0 && !(value.length >= limit)) {
+      if (value && value.length > 0 && !(value.length >= criterion)) {
         errors.push({ name, message });
       }
     },
-    maxLength: (value: string, limit: number, message: string) => {
-      if (value && !(value.length <= limit)) {
+    maxLength: (value: string, criterion: number, message: string) => {
+      if (value && !(value.length <= criterion)) {
         errors.push({ name, message });
       }
     },
-    pattern: (value: string, limit: RegExp, message: string) => {
-      if (value.length > 0 && !value.match(limit)) {
+    pattern: (value: string, criterion: RegExp, message: string) => {
+      if (value.length > 0 && !value.match(criterion)) {
         errors.push({ name, message });
       }
     },
-    custom: (value: string, limit: CustomFunction, message: string) => {
-      // if the custom function limit(value) returns true: push an error
-      if (limit(value)) {
+    custom: (value: string, criterion: CustomFunction, message: string) => {
+      // if the custom function criterion(value) returns true: push an error
+      if (criterion(value)) {
         errors.push({ name, message });
       }
     },
-    required: (value: string, limit, message: string) => {
-      if (value.replace(/\s/g, "") === "" && limit) {
+    required: (value: string, criterion, message: string) => {
+      if (value.replace(/\s/g, "") === "" && criterion) {
         errors.push({ name, message });
       }
     },
   };
 
   try {
-    Object.entries(rulesObject).forEach(
-      ([key, { value: ruleValue, message }]) => {
-        if (configMap[key] && configMap[key] !== undefined) {
-          const defaultFunction = () => {};
-          (configMap[key] || defaultFunction)(value, ruleValue, message);
-        }
+    Object.entries(rulesObject).forEach(([key, { criterion, message }]) => {
+      if (configMap[key] && configMap[key] !== undefined) {
+        const defaultFunction = () => {};
+        (configMap[key] || defaultFunction)(value, criterion, message);
       }
-    );
+    });
   } catch (e) {
     console.error(e);
   }

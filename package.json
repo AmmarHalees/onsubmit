@@ -27,7 +27,7 @@
   },
   "exports": {
     ".": "./dist/index.js",
-    "./types": "./dist/index.d.ts"
+    "./types": "./dist/types/index.js"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts && tsup src/types/index.ts --format cjs,esm --dts --outDir dist/types",

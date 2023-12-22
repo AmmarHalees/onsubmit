@@ -56,8 +56,8 @@ const errors = validateField('Ammar', 'firstName', firstNameRules);
 #### Methods
 | Function        | Description                                           | Parameters                                                        | Returns            |
 |-----------------|-------------------------------------------------------|-------------------------------------------------------------------|--------------------|
-| `validateField` | Validates a single form field against specified rules.| `value`: The string  value of the field.<br>`name`: Name of the field.<br>`rulesObject`: Object containing validation rules. | Array of `FieldError` objects, each containing the `name` of the field and the error `message`. |
-| `validateForm`  | Validates an entire form.                             | `values`: A key-value pair object of field names and values.<br>`rulesObject`: A key-value object which maps field names to their rules . | Array of `FieldError` objects for the entire form. |
+| `validateField` | Validates a single form field against specified rules.| `value`: The string  value of the field.<br>`name`: Name of the field.<br>`Rules`: Object containing validation rules. | Array of `FieldError` objects, each containing the `name` of the field and the error `message`. |
+| `validateForm`  | Validates an entire form.                             | `values`: A key-value pair object of field names and values.<br>`Rules`: A key-value object which maps field names to their rules . | Array of `FieldError` objects for the entire form. |
 
 #### Validation Rules
 
@@ -78,7 +78,7 @@ const errors = validateField('Ammar', 'firstName', firstNameRules);
 ```Typescript
 import { validateField } from 'onsubmit';
 
-const rulesObject = {
+const Rules = {
   minLength: { value: 3, message: 'Minimum length is 3' },
   maxLength: { value: 10, message: 'Maximum length is 10' },
   pattern: { value: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
@@ -86,7 +86,7 @@ const rulesObject = {
   required: { value: true, message: 'Field is required' },
 };
 
-const errors = validateField('exampleValue', 'fieldName', rulesObject);
+const errors = validateField('exampleValue', 'fieldName', Rules);
 ```
 
 #### Validate an entire form
@@ -94,7 +94,7 @@ const errors = validateField('exampleValue', 'fieldName', rulesObject);
 ```Typescript
 import { validateForm } from 'onsubmit';
 
-const rulesObject = {
+const Rules = {
   minLength: { value: 3, message: 'Minimum length is 3' },
   maxLength: { value: 10, message: 'Maximum length is 10' },
   pattern: { value: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
@@ -108,7 +108,7 @@ const values = {
   email: 'ammar@company.co',
 };
 
-const errors = validateForm(values, rulesObject);
+const errors = validateForm(values, Rules);
 ```
 
 #### Validate a form with a custom rule
@@ -117,7 +117,7 @@ const errors = validateForm(values, rulesObject);
 
 import { validateForm } from 'onsubmit';
 
-const rulesObject = {
+const Rules = {
   custom: { value: (value) => value !== 'example', message: 'Value cannot be "example"' },
 };
 
@@ -127,14 +127,14 @@ const values = {
   fieldName3: 'exampleValue3',
 };
 
-const errors = validateForm(values, rulesObject);
+const errors = validateForm(values, Rules);
 ```
 
 ## FAQ
 
 ### Which rule object has precedence?
 
-The `required` rule has the highest precedence. The remaining rules are evaluated in the order they are specified in the `rulesObject`.
+The `required` rule has the highest precedence. The remaining rules are evaluated in the order they are specified in the `Rules`.
 
 
 
@@ -150,7 +150,7 @@ export interface Rule {
   message: string;
 }
 
-export interface RulesObject {
+export interface Rules {
   required?: Rule;
   minLength?: Rule;
   maxLength?: Rule;
@@ -167,12 +167,12 @@ export interface CustomFunction {
   (value: string): boolean;
 }
 
-export interface FormDataObject {
+export interface KeyValuePair {
   [key: string]: string | FormDataEntryValue;
 }
 
 export interface NameRuleMap  {
-  [key: string]: RulesObject;
+  [key: string]: Rules;
 };
 
 export type ConfigMap = {

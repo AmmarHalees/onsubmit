@@ -4,14 +4,14 @@ import constants from "../constants.json";
 const minLength = {
   pass: {
     rules: {
-      minLength: { value: 3, message: "Minimum length is 3" },
+      minLength: { criterion: 3, message: "Minimum length is 3" },
     },
     value: "ab",
     expectedOutput: [{ name: "testField", message: "Minimum length is 3" }],
   },
   fail: {
     rules: {
-      minLength: { value: 3, message: "Minimum length is 3" },
+      minLength: { criterion: 3, message: "Minimum length is 3" },
     },
     value: "abc",
     expectedOutput: [],
@@ -21,14 +21,14 @@ const minLength = {
 const maxLength = {
   pass: {
     rules: {
-      maxLength: { value: 3, message: "Maximum length is 3" },
+      maxLength: { criterion: 3, message: "Maximum length is 3" },
     },
     value: "abcd",
     expectedOutput: [{ name: "testField", message: "Maximum length is 3" }],
   },
   fail: {
     rules: {
-      maxLength: { value: 3, message: "Maximum length is 3" },
+      maxLength: { criterion: 3, message: "Maximum length is 3" },
     },
     value: "abc",
     expectedOutput: [],
@@ -38,7 +38,7 @@ const maxLength = {
 const pattern = {
   containsNumnber: {
     rules: {
-      pattern: { value: /[0-9]/, message: "Must contain a number" },
+      pattern: { criterion: /[0-9]/, message: "Must contain a number" },
     },
     value: "abc",
     expectedOutput: [{ name: "testField", message: "Must contain a number" }],
@@ -47,7 +47,7 @@ const pattern = {
   isAValidEmail: {
     rules: {
       pattern: {
-        value: regex.email,
+        criterion: regex.email,
         message: "Must be a valid email",
       },
     },
@@ -58,7 +58,7 @@ const pattern = {
   isValidURI: {
     rules: {
       pattern: {
-        value: regex.uri,
+        criterion: regex.uri,
         message: "Must be a valid link",
       },
     },
@@ -69,7 +69,7 @@ const pattern = {
   isAValidEmail2: {
     rules: {
       pattern: {
-        value: regex.email,
+        criterion: regex.email,
         message: "Must be a valid email",
       },
     },
@@ -79,7 +79,7 @@ const pattern = {
 
   containsLetter: {
     rules: {
-      pattern: { value: /[a-z]/, message: "Must contain a letter" },
+      pattern: { criterion: /[a-z]/, message: "Must contain a letter" },
     },
     value: "123",
     expectedOutput: [{ name: "testField", message: "Must contain a letter" }],
@@ -88,7 +88,7 @@ const pattern = {
   containsSpecialCharacter: {
     rules: {
       pattern: {
-        value: /[!@#$%^&*]/,
+        criterion: /[!@#$%^&*]/,
         message: "Must contain a special character",
       },
     },
@@ -101,7 +101,7 @@ const pattern = {
   containsCapitalLetter: {
     rules: {
       pattern: {
-        value: /[A-Z]/,
+        criterion: /[A-Z]/,
         message: "Must contain a capital letter",
       },
     },
@@ -114,7 +114,7 @@ const pattern = {
   containsSmallLetter: {
     rules: {
       pattern: {
-        value: /[a-z]/,
+        criterion: /[a-z]/,
         message: "Must contain a small letter",
       },
     },
@@ -127,7 +127,7 @@ const pattern = {
   containsCapitalLetterSpecialCharacterAndNumber: {
     rules: {
       pattern: {
-        value: /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])/,
+        criterion: /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])/,
         message: "Must contain a capital letter, special character and number",
       },
     },
@@ -142,7 +142,7 @@ const pattern = {
   containsCapitalLetterSpecialCharacterAndNumber2: {
     rules: {
       pattern: {
-        value: /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])/,
+        criterion: /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])/,
         message: "Must contain a capital letter, special character and number",
       },
     },
@@ -158,7 +158,7 @@ const pattern = {
   containsCapitalLetterSpecialCharacterAndNumber3: {
     rules: {
       pattern: {
-        value: /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])/,
+        criterion: /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])/,
         message: "Must contain a capital letter, special character and number",
       },
     },
@@ -173,7 +173,7 @@ const pattern = {
   containsCapitalLetterSpecialCharacterAndNumber4: {
     rules: {
       pattern: {
-        value: /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])/,
+        criterion: /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])/,
         message: "Must contain a capital letter, special character and number",
       },
     },
@@ -184,7 +184,7 @@ const pattern = {
   isValidCUID: {
     rules: {
       pattern: {
-        value: regex.cuid,
+        criterion: regex.cuid,
         message: "Must be a valid CUID",
       },
     },
@@ -195,7 +195,7 @@ const pattern = {
   isValidCUID2: {
     rules: {
       pattern: {
-        value: regex.cuid,
+        criterion: regex.cuid,
         message: "Must be a valid CUID",
       },
     },
@@ -205,7 +205,7 @@ const pattern = {
   isValidULID: {
     rules: {
       pattern: {
-        value: regex.ulid,
+        criterion: regex.ulid,
         message: "Must be a valid ULID",
       },
     },
@@ -217,14 +217,14 @@ const pattern = {
 const required = {
   pass: {
     rules: {
-      required: { value: true, message: "Required" },
+      required: { criterion: true, message: "Required" },
     },
     value: "",
     expectedOutput: [{ name: "testField", message: "Required" }],
   },
   fail: {
     rules: {
-      required: { value: true, message: "Required" },
+      required: { criterion: true, message: "Required" },
     },
     value: "abc",
     expectedOutput: [],
@@ -236,7 +236,7 @@ const custom = {
   equality: {
     rules: {
       custom: {
-        value: (value: string) => {
+        criterion: (value: string) => {
           if (value !== "ammar") {
             return true;
           }
@@ -252,7 +252,7 @@ const custom = {
   inequality: {
     rules: {
       custom: {
-        value: (value: string) => {
+        criterion: (value: string) => {
           if (value !== "ammar") {
             return true;
           }
@@ -268,7 +268,7 @@ const custom = {
   allCaps: {
     rules: {
       custom: {
-        value: (value: string) => {
+        criterion: (value: string) => {
           if (value !== value.toUpperCase()) {
             return true;
           }
@@ -284,7 +284,7 @@ const custom = {
   noWhiteSpace: {
     rules: {
       custom: {
-        value: (value: string) => {
+        criterion: (value: string) => {
           if (value.includes(" ")) {
             return true;
           }
@@ -300,7 +300,7 @@ const custom = {
   noStarAtTheEnd: {
     rules: {
       custom: {
-        value: (value: string) => {
+        criterion: (value: string) => {
           if (value.endsWith("*")) {
             return true;
           }
@@ -318,7 +318,7 @@ const custom = {
   hasAtLeast3SpecialCharacters: {
     rules: {
       custom: {
-        value: (value: string) => {
+        criterion: (value: string) => {
           const specialCharacters = constants.specialCharacters;
           let count = 0;
           for (let i = 0; i < value.length; i++) {
@@ -348,23 +348,23 @@ const multipleRules = {
   case1: {
     rules: {
       required: {
-        value: true,
+        criterion: true,
         message: "Name is required",
       },
       minLength: {
-        value: 6,
+        criterion: 6,
         message: "Name least 6 characters long",
       },
       maxLength: {
-        value: 10,
+        criterion: 10,
         message: "Name should not exceed 10 characters",
       },
       pattern: {
-        value: /^[a-zA-Z]+$/,
+        criterion: /^[a-zA-Z]+$/,
         message: "Name should contain only letters",
       },
       custom: {
-        value: (value: string) => {
+        criterion: (value: string) => {
           if (value.endsWith("*")) {
             return true;
           }
@@ -384,23 +384,23 @@ const multipleRules = {
   case2: {
     rules: {
       required: {
-        value: true,
+        criterion: true,
         message: "Name is required",
       },
       minLength: {
-        value: 6,
+        criterion: 6,
         message: "Name least 6 characters long",
       },
       maxLength: {
-        value: 20,
+        criterion: 20,
         message: "Name should not exceed 20 characters",
       },
       pattern: {
-        value: /^[a-zA-Z]+$/,
+        criterion: /^[a-zA-Z]+$/,
         message: "Name should contain only letters",
       },
       custom: {
-        value: (value: string) => {
+        criterion: (value: string) => {
           if (value.endsWith("*")) {
             return true;
           }
@@ -416,23 +416,23 @@ const multipleRules = {
   case3: {
     rules: {
       required: {
-        value: true,
+        criterion: true,
         message: "Name is required",
       },
       minLength: {
-        value: 6,
+        criterion: 6,
         message: "Name least 6 characters long",
       },
       maxLength: {
-        value: 20,
+        criterion: 20,
         message: "Name should not exceed 20 characters",
       },
       pattern: {
-        value: /^[a-zA-Z]+$/,
+        criterion: /^[a-zA-Z]+$/,
         message: "Name should contain only letters",
       },
       custom: {
-        value: (value: string) => {
+        criterion: (value: string) => {
           if (value.endsWith("*")) {
             return true;
           }

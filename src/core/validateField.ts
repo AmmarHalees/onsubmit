@@ -1,58 +1,130 @@
-import { RulesObject, FieldError, CustomFunction } from "../types";
+import {
+  Rules,
+  FieldError,
+  CustomFunction,
+  ConfigMap,
+  Criterion,
+  ValidationFunction,
+} from "../types";
 import _utils from "../utils";
 
 export function validateField(
   value: string,
   name: string,
-  rulesObject: RulesObject
+  Rules: Rules
 ): Array<FieldError> {
   const errors: Array<FieldError> = [];
 
-  const configMap: {
-    [key: string]: (value: string, limit: any, message: string) => void;
-  } = {
-    minLength: (value: string, limit: number, message: string) => {
+  const configMap: ConfigMap = {
+    minLength: (value: string, criterion: number, message: string) => {
+      /*-------- Error Guards --------*/
+
       if (!_utils.isString(value))
         throw new Error(
-          "File value must be a string to be validated with minLength"
+          "Input Value for minLength must be a string to be validated"
         );
 
-      if (value && value.length > 0 && !(value.length >= limit)) {
+      if (!_utils.isNumber(criterion))
+        throw new Error(
+          "Criterion for minLength must be a number to be validated"
+        );
+
+      if (!_utils.isString(message))
+        throw new Error(
+          "Message for minLength must be a string to be validated"
+        );
+
+      /*-------- Normal Function --------*/
+
+      if (value && value.length > 0 && !(value.length >= criterion)) {
         errors.push({ name, message });
       }
     },
-    maxLength: (value: string, limit: number, message: string) => {
-      if (value && !(value.length <= limit)) {
+    maxLength: (value: string, criterion: number, message: string) => {
+      /*-------- Error Guards --------*/
+
+      if (!_utils.isString(value))
+        throw new Error(
+          "Input Value for maxLength must be a string to be validated"
+        );
+
+      if (!_utils.isNumber(criterion))
+        throw new Error(
+          "Criterion for maxLength must be a number to be validated"
+        );
+
+      if (!_utils.isString(message))
+        throw new Error(
+          "Message for maxLength must be a string to be validated"
+        );
+
+      /*-------- Normal Function --------*/
+      if (value && !(value.length <= criterion)) {
         errors.push({ name, message });
       }
     },
-    pattern: (value: string, limit: RegExp, message: string) => {
-      if (value.length > 0 && !value.match(limit)) {
+    pattern: (value: string, criterion: RegExp, message: string) => {
+      /*-------- Error Guards --------*/
+
+      if (!_utils.isString(value))
+        throw new Error(
+          "Input Value for pattern must be a string to be validated"
+        );
+
+      // if (!_utils.isRegExp(criterion))
+
+      //   throw new Error(
+      //     "Criterion for pattern must be a RegExp to be validated"
+      //   );
+
+      if (!_utils.isString(message))
+        throw new Error("Message for pattern must be a string to be validated");
+
+      if (value.length > 0 && !value.match(criterion)) {
         errors.push({ name, message });
       }
     },
-    custom: (value: string, limit: CustomFunction, message: string) => {
-      // if the custom function limit(value) returns true: push an error
-      if (limit(value)) {
+    custom: (value: string, criterion: CustomFunction, message: string) => {
+      /*-------- Error Guards --------*/
+
+      if (!_utils.isString(value))
+        throw new Error(
+          "Input Value for custom must be a string to be validated"
+        );
+
+      // if (!_utils.isFunction(criterion))
+      //   throw new Error(
+      //     "Criterion for custom must be a function to be validated"
+      //   );
+
+      if (!_utils.isString(message))
+        throw new Error("Message for custom must be a string to be validated");
+
+      if (criterion(value)) {
         errors.push({ name, message });
       }
     },
-    required: (value: string, limit, message: string) => {
-      if (value.replace(/\s/g, "") === "" && limit) {
+    required: (value: string, criterion: boolean, message: string) => {
+      if (value.replace(/\s/g, "") === "" && criterion) {
         errors.push({ name, message });
       }
     },
   };
 
   try {
-    Object.entries(rulesObject).forEach(
-      ([key, { value: ruleValue, message }]) => {
-        if (configMap[key] && configMap[key] !== undefined) {
-          const defaultFunction = () => {};
-          (configMap[key] || defaultFunction)(value, ruleValue, message);
-        }
+    Object.entries(Rules).forEach(([key, { value: criterion, message }]) => {
+      // Assert that key is a key of ConfigMap
+
+      const validationFunction = configMap[
+        key as keyof ConfigMap
+      ] as ValidationFunction<Criterion>;
+
+      if (validationFunction) {
+        validationFunction(value, criterion, message);
+      } else {
+        throw new Error(`Invalid Rule: ${key}`);
       }
-    );
+    });
   } catch (e) {
     console.error(e);
   }

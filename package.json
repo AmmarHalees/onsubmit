@@ -25,6 +25,13 @@
       "npm-funding": true
     }
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./types": "./dist/types/index.js"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "release": "pnpm run ci && changeset publish",

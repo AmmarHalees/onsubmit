@@ -1,5 +1,11 @@
 # onsubmit
 
+## 0.0.10
+
+### Patch Changes
+
+- d2652da: exports
+
 ## 0.0.9
 
 ### Patch Changes

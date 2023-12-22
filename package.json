@@ -26,11 +26,8 @@
     }
   },
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./types": "./dist/types/index.js"
+    ".": "./dist/index.js",
+    "./types": "./dist/index.d.ts"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",

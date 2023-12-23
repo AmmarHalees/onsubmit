@@ -83,53 +83,22 @@ describe("Regex Tests", () => {
     });
   });
 
-  // Test CUID Regex
-  // describe("cuid", () => {
-  //   // Valid CUIDs
-  //   it("validates correct CUIDs", () => {
-  //     const validCUIDs = [
-  //       "ckvztazbu000001l5wth4lzdl",
-  //       "c0123456789abcdef01234567",
-  //     ];
+  // Invalid CUIDs
+  it("rejects incorrect CUIDs", () => {
+    const invalidCUIDs = [
+      "0123456789abcdef01234567",
+      "c!@#$$%^&*()",
+      "ckvztazbu000001l5wth4lzdl-too-long",
+      // Other invalid CUIDs
+    ];
 
-  //     validCUIDs.forEach((cuid) => {
-  //       expect(_regex.cuid.test(cuid)).toBe(true);
-  //     });
-  //   });
-
-  //   // Invalid CUIDs
-  //   it("rejects incorrect CUIDs", () => {
-  //     const invalidCUIDs = [
-  //       "0123456789abcdef01234567",
-  //       "ckvztazbu0001l5wth4lzdl",
-  //       "c!@#$$%^&*()",
-  //       "ckvztazbu000001l5wth4lzdl-too-long",
-  //       "ckvztazbu000001l5wth4",
-  //     ];
-
-  //     invalidCUIDs.forEach((cuid) => {
-  //       expect(_regex.cuid.test(cuid)).toBe(false);
-  //     });
-  //   });
-  // });
-
-  //   // Test ULID Regex
-  //   describe("ulid", () => {
-  //     it("validates correct ULIDs", () => {
-  //       expect(_regex.ulid.test("01B4EEAFD4F12R3D7TYMGJ21LZ")).toBe(true); // Corrected ULID
-  //       // Add more valid ULID cases
-  //     });
-
-  //     it("rejects incorrect ULIDs", () => {
-  //       expect(_regex.ulid.test("01B4E")).toBe(false);
-  //       expect(_regex.ulid.test("01B4EEAFD4G12R3D7TYMGJ21LZO")).toBe(false);
-  //       // Add more invalid ULID cases
-  //     });
-  //   });
+    invalidCUIDs.forEach((cuid) => {
+      expect(_regex.cuid.test(cuid)).toBe(false);
+    });
+  });
 
   // Test Alphanumeric Regex
   describe("alphanumeric", () => {
-    // Valid alphanumeric strings
     it("validates correct alphanumeric strings", () => {
       const validStrings = [
         "Hello123",
@@ -143,7 +112,6 @@ describe("Regex Tests", () => {
       });
     });
 
-    // Invalid alphanumeric strings
     it("rejects incorrect alphanumeric strings", () => {
       const invalidStrings = [
         "Hello@123",
@@ -184,6 +152,49 @@ describe("Regex Tests", () => {
 
       invalidKebabCases.forEach((str) => {
         expect(_regex.kebabCase.test(str)).toBe(false);
+      });
+    });
+  });
+
+  describe("Strict Arabic Text and Numbers Regex", () => {
+    // Test cases for matching Arabic text with Arabic-Indic numbers
+    it("validates strings with Arabic characters and numbers", () => {
+      const validStrings = [
+        "مرحبا١٢٣٤", // Arabic text with Arabic-Indic numbers
+        "١٢٣٤", // Only Arabic-Indic numbers
+        "العربية٧٨٩", // Arabic text with Arabic-Indic numbers
+        "١٢٣٤",
+        "مرحبا، كيف حالك؟",
+        "مرحبا١٢٣٤، كيف حالك؟", // Combination of text, numbers, and punctuation
+        "٥٦٧٨٩ - أرقام عربية", // Arabic-Indic numerals with text
+        "هذه جملة عربية بالكامل.", // Sentence with full stop
+        "فاصلة؛ تستخدم للتوقف", // Sentence with Arabic semicolon
+        "هل هذا صحيح؟", // Question mark
+        "جملة بالعربية - مع شرطة", // Sentence with a dash
+        "هل تعلم؟ اللغة العربية ممتعة للغاية.",
+        'في العربية، يُستخدم "الفاصلة"، بشكل مختلف.',
+        "١٢٣٤ - هذه أرقامٌ عربية؛ وهي مختلفة عن الأرقام الإنجليزية.",
+        'أحب البرمجة: هي مجال "رائع" للتعلم!',
+        "تُستخدم النقطة العربية . بشكل مماثل للإنجليزية.",
+      ];
+
+      validStrings.forEach((str) => {
+        expect(_regex.arabic.test(str)).toBe(true);
+      });
+    });
+
+    // Test cases for rejecting strings with non-Arabic characters or non-Arabic numbers
+    it("rejects strings without Arabic characters or numbers", () => {
+      const invalidStrings = [
+        "Hello - مرحبا", // Mixed English and Arabic
+        "مرحبا 1234", // Arabic text with Latin numbers
+        "こんにちは, مرحبا", // Mixed Japanese and Arabic
+        "مرحبا! English text", // Mixed Arabic and English with non-Arabic punctuation
+        "أرقام بالإنجليزية: 12345",
+      ];
+
+      invalidStrings.forEach((str) => {
+        expect(_regex.arabic.test(str)).toBe(false);
       });
     });
   });

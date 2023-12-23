@@ -21,6 +21,7 @@
 
 `onsubmit` provides a simple and headless interface for validating form fields, with emphasis on security.
 
+
 ### Features
 
 - Light-weight.
@@ -148,6 +149,8 @@ const errors = validateForm(data, rulesObject);
 
 ### Utils and patterns
 
+#### _utils
+
 `onsubmit` provides a set of utility functions and patterns to help you build your forms.
 
 | Function Name     | Type Signature                                                                  | Description                                                                                                                                               |
@@ -159,6 +162,20 @@ const errors = validateForm(data, rulesObject);
 | `isObject`        | `<T extends object>(value: unknown) => value is T`                               | Determines if a value is an object. This excludes `null`, arrays, and `Date` objects.                                                                      |
 | `isFile`          | `(element: HTMLInputElement) => element is HTMLInputElement`                     | Checks if an HTML input element is of type `file`.                                                                                                         |
 
+
+#### _patterns
+
+
+1. `email`
+2. `uri`
+3. `alphanumeric`
+4. `cuid`
+5. `kebabCase`
+6. `arabic`
+
+
+
+<br>
 
 
 ## FAQ
@@ -205,5 +222,7 @@ interface RulesObject {
 - `minTime` rule.rule
 - `maxTime` rule
 - `file` rule: { minSize, maxSize, type, name }
+- `cardNumber` pattern.
+- `cardCompany` utility.
 - Benchmarking
 - Allow for multiple patterns

@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import _utils from "../utils";
+import { JSDOM } from "jsdom";
 
 describe("Utils Tests", () => {
   // Test isDateObject
@@ -150,26 +151,23 @@ describe("Utils Tests", () => {
   });
 
   // Test isFile
-  // describe("isFile", () => {
-  //   const { document } = new JSDOM(``).window;
+  describe("isFile", () => {
+    const { document } = new JSDOM(``).window;
 
-  //   it("returns true for input elements of type file", () => {
-  //     const fileInput = document.createElement("input");
-  //     fileInput.type = "file";
-  //     expect(_utils.isFile(fileInput)).toBe(true);
-  //   });
+    it("returns true for input elements of type file", () => {
+      const fileInput = document.createElement("input");
+      fileInput.type = "file";
+      expect(_utils.isFile(fileInput)).toBe(true);
+    });
 
-  //   it("returns false for non-file input elements and edge cases", () => {
-  //     const textInput = document.createElement("input");
-  //     textInput.type = "text";
-  //     expect(_utils.isFile(textInput)).toBe(false);
+    it("returns false for non-file input elements and edge cases", () => {
+      const textInput = document.createElement("input");
+      textInput.type = "text";
+      expect(_utils.isFile(textInput)).toBe(false);
 
-  //     const divElement = document.createElement("div");
-  //     expect(_utils.isFile(divElement)).toBe(false);
-
-  //     const checkboxInput = document.createElement("input");
-  //     checkboxInput.type = "checkbox";
-  //     expect(_utils.isFile(checkboxInput)).toBe(false);
-  //   });
-  // });
+      const checkboxInput = document.createElement("input");
+      checkboxInput.type = "checkbox";
+      expect(_utils.isFile(checkboxInput)).toBe(false);
+    });
+  });
 });

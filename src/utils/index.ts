@@ -1,6 +1,9 @@
-const isDateObject = (value: unknown): value is Date => value instanceof Date;
-const isString = (value: unknown): value is string => typeof value === "string";
-const isNumber = (value: unknown): value is number => typeof value === "number";
+const isDateObject = (value: unknown): value is Date =>
+  value instanceof Date && !isNaN((value as Date).getTime());
+const isString = (value: unknown): value is string =>
+  typeof value === "string" || value instanceof String;
+const isNumber = (value: unknown): value is number =>
+  typeof value === "number" && isFinite(value);
 const isNullOrUndefined = (value: unknown): value is null | undefined =>
   value == null;
 

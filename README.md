@@ -146,6 +146,19 @@ const errors = validateForm(data, rulesObject);
 ```
 <br>
 
+### Utils and patterns
+
+`onsubmit` provides a set of utility functions and patterns to help you build your forms.
+
+| Function Name     | Type Signature                                                                  | Description                                                                                                                                               |
+|-------------------|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `isDateObject`    | `(value: unknown) => value is Date`                                              | Checks if the given value is a valid `Date` object.                                                                                                        |
+| `isString`        | `(value: unknown) => value is string`                                            | Determines if the provided value is a string. This includes both string literals and `String` objects.                                                     |
+| `isNumber`        | `(value: unknown) => value is number`                                            | Verifies if the value is a number and is finite.                                                                                                           |
+| `isNullOrUndefined` | `(value: unknown) => value is null \| undefined`                                | Checks if the value is either `null` or `undefined`.                                                                                                       |
+| `isObject`        | `<T extends object>(value: unknown) => value is T`                               | Determines if a value is an object. This excludes `null`, arrays, and `Date` objects.                                                                      |
+| `isFile`          | `(element: HTMLInputElement) => element is HTMLInputElement`                     | Checks if an HTML input element is of type `file`.                                                                                                         |
+
 
 
 ## FAQ

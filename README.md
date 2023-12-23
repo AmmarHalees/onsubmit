@@ -41,9 +41,9 @@
 import { validateField } from 'onsubmit';
 
 const firstNameRules = {
-  required: { value: true, message: 'First Name is required' },
-  minLength: { value: 3, message: 'Minimum length is 3' },
-  maxLength: { value: 10, message: 'Maximum length is 10' },
+  required: { criterion: true, message: 'First Name is required' },
+  minLength: { criterion: 3, message: 'Minimum length is 3' },
+  maxLength: { criterion: 10, message: 'Maximum length is 10' },
 };
 
 // recieve an array of errors
@@ -56,8 +56,8 @@ const errors = validateField('Ammar', 'firstName', firstNameRules);
 #### Methods
 | Function        | Description                                           | Parameters                                                        | Returns            |
 |-----------------|-------------------------------------------------------|-------------------------------------------------------------------|--------------------|
-| `validateField` | Validates a single form field against specified rules.| `value`: The string  value of the field.<br>`name`: Name of the field.<br>`rulesObject`: Object containing validation rules. | Array of `FieldError` objects, each containing the `name` of the field and the error `message`. |
-| `validateForm`  | Validates an entire form.                             | `values`: A key-value pair object of field names and values.<br>`rulesObject`: A key-value object which maps field names to their rules . | Array of `FieldError` objects for the entire form. |
+| `validateField` | Validates a single form field against specified rules.| `value`: The string  value of the field. <br> <br>`name`: Name of the field.<br> <br> `rules`: Object containing validation rules. | Array of `FieldError` objects, each containing the `name` of the field and the error `message`. |
+| `validateForm`  | Validates an entire form.                             | `values`: A key-value pair object of field names and values.<br> <br>`rules`: A key-value object which maps field names to their rules . | Array of `FieldError` objects for the entire form. |
 
 #### Validation Rules
 
@@ -78,18 +78,37 @@ const errors = validateField('Ammar', 'firstName', firstNameRules);
 ```Typescript
 import { validateField } from 'onsubmit';
 
-const rulesObject = {
-  minLength: { value: 3, message: 'Minimum length is 3' },
-  maxLength: { value: 10, message: 'Maximum length is 10' },
-  pattern: { value: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
-  custom: { value: (value) => value !== 'example', message: 'Value cannot be "example"' },
-  required: { value: true, message: 'Field is required' },
+const emailRules = {
+  required: { value: true, message: 'Email is required' },
+  pattern: {
+    value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+    mesaage: 'Invalid email',
+  },
 };
 
-const errors = validateField('exampleValue', 'fieldName', rulesObject);
-```
+const errors = validateField('ammar@winenergy.co' , 'email', emailRules);
 
-#### Validate an entire form
+```
+<br>
+
+#### Custom validation logic
+
+```Typescript
+
+import { validateForm } from 'onsubmit';
+
+const rulesObject = {
+  custom: {
+    value: (value) => value === password,
+    message: 'Passwords do not match',
+  }
+};
+
+const errors = validateField(passwordRepeat, 'passwordRepeat', rulesObject);
+```
+<br>
+
+#### Validate some data
 
 ```Typescript
 import { validateForm } from 'onsubmit';
@@ -102,33 +121,32 @@ const rulesObject = {
   required: { value: true, message: 'Field is required' },
 };
 
-const values = {
+const data = {
   firstName: 'Ammar',
   lastName: 'Halees',
   email: 'ammar@company.co',
 };
 
-const errors = validateForm(values, rulesObject);
+const errors = validateForm(data, rulesObject);
 ```
+<br>
 
-#### Validate a form with a custom rule
+#### Validate a form
+  
+  ```Typescript
+  import { validateForm } from 'onsubmit';
 
-```Typescript
+  const handleOnsubmit = (e) => {
+    e.preventDefault();
 
-import { validateForm } from 'onsubmit';
-
-const rulesObject = {
-  custom: { value: (value) => value !== 'example', message: 'Value cannot be "example"' },
-};
-
-const values = {
-  fieldName1: 'exampleValue1',
-  fieldName2: 'exampleValue2',
-  fieldName3: 'exampleValue3',
-};
-
-const errors = validateForm(values, rulesObject);
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+    const errors = validateForm(data, RulesMap);
+  };
 ```
+<br>
+
+
 
 ## FAQ
 
@@ -145,12 +163,16 @@ The `required` rule has the highest precedence. The remaining rules are evaluate
   
   ```Typescript
 
-export interface Rule {
-  value: any;
+type Criterion = string | number | CustomFunction | boolean | RegExp;
+
+interface Rule {
+  criterion: Criterion;
   message: string;
 }
 
-export interface RulesObject {
+type FormDataShape = KeyValuePair | { [k: string]: FormDataEntryValue };
+
+interface RulesObject {
   required?: Rule;
   minLength?: Rule;
   maxLength?: Rule;
@@ -158,39 +180,17 @@ export interface RulesObject {
   custom?: Rule;
 }
 
-export interface FieldError {
-  name: string;
-  message: string;
-}
-
-export interface CustomFunction {
-  (value: string): boolean;
-}
-
-export interface KeyValuePair {
-  [key: string]: string | FormDataEntryValue;
-}
-
-export interface NameRuleMap  {
-  [key: string]: RulesObject;
-};
-
-export type ConfigMap = {
-  [key: string]: (value: string, limit: any, message: string) => void;
-};
-
-
-export type RuleLimit = string | number | RegExp | CustomFunction;
-
   ```
 
 
-### Future Plans
+### TODO
 
-- `onlySecure`: In PR.
-- `minDate`
-- `maxDate`
-- `minTime`
-- `maxTime`
+
+- `onlySecure` opt-out rule.
+- `minDate` rule.
+- `maxDate` rule.
+- `minTime` rule.rule
+- `maxTime` rule
+- `file` rule: { minSize, maxSize, type, name }
+- Benchmarking
 - Allow for multiple patterns
-- `file` : { minSize, maxSize, type, name }

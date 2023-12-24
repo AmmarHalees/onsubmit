@@ -140,9 +140,6 @@ describe("Utils Tests", () => {
     it("returns true for objects created with Object.create(null)", () => {
       expect(_utils.isObject(Object.create(null))).toBe(true);
     });
-    it("returns true for objects created with Object.create(null)", () => {
-      expect(_utils.isObject(Object.create(null))).toBe(true);
-    });
 
     it("returns true for Proxy objects", () => {
       const proxy = new Proxy({}, {});
@@ -168,6 +165,20 @@ describe("Utils Tests", () => {
       const checkboxInput = document.createElement("input");
       checkboxInput.type = "checkbox";
       expect(_utils.isFile(checkboxInput)).toBe(false);
+    });
+  });
+
+  describe("isBoolean", () => {
+    it("should return true for booleans", () => {
+      expect(_utils.isBoolean(true)).toBe(true);
+      expect(_utils.isBoolean(false)).toBe(true);
+    });
+
+    it("should return false for non-booleans", () => {
+      expect(_utils.isBoolean("true")).toBe(false);
+      expect(_utils.isBoolean(123)).toBe(false);
+      expect(_utils.isBoolean(null)).toBe(false);
+      expect(_utils.isBoolean(undefined)).toBe(false);
     });
   });
 });

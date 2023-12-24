@@ -56,8 +56,8 @@ export function validateField(
       pattern: (value: string, criterion: RegExp, message: string) => {
         /*--- Error Guards ---*/
 
-        // if (!_utils.isRegExp(criterion))
-        //   throw new TypeError("'criterion' must be a RegExp");
+        if (!_utils.isRegExp(criterion))
+          throw new TypeError("'criterion' must be a RegExp");
 
         if (!_utils.isString(message))
           throw new TypeError("'message' must be a string");
@@ -69,8 +69,8 @@ export function validateField(
       custom: (value: string, criterion: CustomFunction, message: string) => {
         /*--- Error Guards ---*/
 
-        // if (!_utils.isFunction(criterion))
-        //   throw new TypeError("'criterion' must be a function");
+        if (!_utils.isFunction(criterion))
+          throw new TypeError("'criterion' must be a function");
 
         if (!_utils.isString(message))
           throw new TypeError("'message' must be a string");
@@ -84,8 +84,8 @@ export function validateField(
       required: (value: string, criterion: boolean, message: string) => {
         /*--- Error Guards ---*/
 
-        // if (!_utils.isBoolean(criterion))
-        //   throw new TypeError("'criterion' must be a boolean");
+        if (!_utils.isBoolean(criterion))
+          throw new TypeError("'criterion' must be a boolean");
 
         if (!_utils.isString(message))
           throw new TypeError("'message' must be a string");

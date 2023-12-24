@@ -22,8 +22,6 @@ class CustomTypeError extends Error {
   }
 }
 
-// RequiredParamError  
-
 class RequiredParamError extends Error {
   constructor(paramName: string) {
     super();

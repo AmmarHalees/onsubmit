@@ -7,9 +7,9 @@ import { validateField } from "./validateField";
 export function validateForm(data: FormDataShape, NameRuleMap: NameRuleMap) {
   const errors: Array<FieldError> = [];
 
-  /*-------- Error Guards --------*/
-
   try {
+    /*-------- Error Guards --------*/
+
     if (!NameRuleMap) throw new RequiredParamError("NameRuleMap is required");
     if (!data) throw new RequiredParamError("data is required");
     if (!_utils.isObject(data))

@@ -22,6 +22,16 @@ class CustomTypeError extends Error {
   }
 }
 
+// RequiredParamError  
+
+class RequiredParamError extends Error {
+  constructor(paramName: string) {
+    super();
+    this.name = "RequiredParamError";
+    this.message = `${paramName} is required`;
+  }
+}
+
 function handleError(error: Error) {
   if (error.name === "TYPE_ERROR") {
     console.error("Type Error:", error.message);
@@ -31,8 +41,8 @@ function handleError(error: Error) {
     console.error(
       "Internal Error",
       error.message,
-      "Please report this at https://github.com/AmmarHalees/onsubmit/issues"
+      "Please report this at" + "https://github.com/AmmarHalees/onsubmit/issues"
     );
   }
 }
-export { MappingError, CustomTypeError, handleError };
+export { MappingError, CustomTypeError, RequiredParamError, handleError };

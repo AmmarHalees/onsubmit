@@ -25,7 +25,7 @@
 
 ### Features
 
-- Light-weight.
+- Light-weight. (~1KB gzipped)
 - Simple API.
 - Zero dependencies.
 

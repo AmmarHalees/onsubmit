@@ -16,12 +16,15 @@ export function validateField(
 ): Array<FieldError> {
   const errors: Array<FieldError> = [];
   try {
+
+    if (!_utils.isString(value))
+      throw new TypeError("'value' must be a string");
+
+    if (!_utils.isString(name)) throw new TypeError("'name' must be a string");
+
     const configMap: ConfigMap = {
       minLength: (value: string, criterion: number, message: string) => {
         /*--- Error Guards ---*/
-
-        if (!_utils.isString(value))
-          throw new TypeError("'value' must be a string");
 
         if (!_utils.isNumber(criterion))
           throw new TypeError("'criterion' must be a number");
@@ -38,9 +41,6 @@ export function validateField(
       maxLength: (value: string, criterion: number, message: string) => {
         /*--- Error Guards ---*/
 
-        if (!_utils.isString(value))
-          throw new TypeError("'value' must be a string");
-
         if (!_utils.isNumber(criterion))
           throw new TypeError("'criterion' must be a number");
 
@@ -56,9 +56,6 @@ export function validateField(
       pattern: (value: string, criterion: RegExp, message: string) => {
         /*--- Error Guards ---*/
 
-        if (!_utils.isString(value))
-          throw new TypeError("'value' must be a string");
-
         // if (!_utils.isRegExp(criterion))
         //   throw new TypeError("'criterion' must be a RegExp");
 
@@ -71,9 +68,6 @@ export function validateField(
       },
       custom: (value: string, criterion: CustomFunction, message: string) => {
         /*--- Error Guards ---*/
-
-        if (!_utils.isString(value))
-          throw new TypeError("'value' must be a string");
 
         // if (!_utils.isFunction(criterion))
         //   throw new TypeError("'criterion' must be a function");
@@ -89,9 +83,6 @@ export function validateField(
       },
       required: (value: string, criterion: boolean, message: string) => {
         /*--- Error Guards ---*/
-
-        if (!_utils.isString(value))
-          throw new TypeError("'value' must be a string");
 
         // if (!_utils.isBoolean(criterion))
         //   throw new TypeError("'criterion' must be a boolean");

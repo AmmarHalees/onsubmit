@@ -1,31 +1,41 @@
-export type Criterion = string | number | CustomFunction | boolean | RegExp;
-
-export interface Rule {
-  criterion: Criterion;
-  message: string;
-}
-
-export type FormDataShape = KeyValuePair | { [k: string]: FormDataEntryValue };
-
-export interface RulesObject {
-  required?: Rule;
-  minLength?: Rule;
-  maxLength?: Rule;
-  pattern?: Rule;
-  custom?: Rule;
-}
-
-export interface FieldError {
-  name: string;
-  message: string;
-}
-
 export interface CustomFunction {
   (value: string): boolean;
 }
 
 export interface KeyValuePair {
   [key: string]: string;
+}
+
+export type Criterion = string | number | CustomFunction | boolean | RegExp;
+
+export interface Rule<TCriterion = Criterion> {
+  criterion: TCriterion;
+  message: string;
+}
+
+export interface RequiredRule extends Rule<boolean> {}
+
+export interface MinLengthRule extends Rule<number> {}
+
+export interface MaxLengthRule extends Rule<number> {}
+
+export interface PatternRule extends Rule<RegExp> {}
+
+export interface CustomRule extends Rule<CustomFunction> {}
+
+export interface RulesObject {
+  required?: RequiredRule;
+  minLength?: MinLengthRule;
+  maxLength?: MaxLengthRule;
+  pattern?: PatternRule;
+  custom?: CustomRule;
+}
+
+export type FormDataShape = KeyValuePair | { [k: string]: FormDataEntryValue };
+
+export interface FieldError {
+  name: string;
+  message: string;
 }
 
 export interface NameRuleMap {

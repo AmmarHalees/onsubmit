@@ -2,7 +2,7 @@ type ERROR_NAMES = "TYPE_ERROR" | "MAPPING_ERROR";
 
 class MappingError extends Error {
   constructor(
-    message: string = "Validation Error",
+    message: string = "Mapping Error",
     name: ERROR_NAMES = "MAPPING_ERROR"
   ) {
     super();
@@ -28,13 +28,13 @@ class TypeError extends Error {
 function handleError(error: Error): void {
   switch (error.constructor) {
     case TypeError:
-      console.log("Type Error:", error.message);
+      console.error("Type Error:", error.message);
       break;
     case MappingError:
-      console.log("Mapping Error:", error.message);
+      console.error("Mapping Error:", error.message);
       break;
     default:
-      console.log(
+      console.error(
         "Internal Error",
         error.message,
         "Please report this at" +

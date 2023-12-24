@@ -1,5 +1,11 @@
 # onsubmit
 
+## 0.0.15
+
+### Patch Changes
+
+- 530ebdf: error management
+
 ## 0.0.14
 
 ### Patch Changes

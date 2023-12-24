@@ -11,7 +11,7 @@ class MappingError extends Error {
   }
 }
 
-class TypeError extends Error {
+class CustomTypeError extends Error {
   constructor(
     message: string = "Type Error",
     name: ERROR_NAMES = "TYPE_ERROR"
@@ -22,26 +22,17 @@ class TypeError extends Error {
   }
 }
 
-// Other error types can be added as needed
-
-// Error Handling Utility
-function handleError(error: Error): void {
-  switch (error.constructor) {
-    case TypeError:
-      console.error("Type Error:", error.message);
-      break;
-    case MappingError:
-      console.error("Mapping Error:", error.message);
-      break;
-    default:
-      console.error(
-        "Internal Error",
-        error.message,
-        "Please report this at" +
-          "https://github.com/AmmarHalees/onsubmit/issues"
-      );
-      break;
+function handleError(error: Error) {
+  if (error.name === "TYPE_ERROR") {
+    console.error("Type Error:", error.message);
+  } else if (error.name === "TYPE_ERROR") {
+    console.error("Mapping Error:", error.message);
+  } else {
+    console.error(
+      "Internal Error",
+      error.message,
+      "Please report this at https://github.com/AmmarHalees/onsubmit/issues"
+    );
   }
 }
-
-export { MappingError, handleError };
+export { MappingError, CustomTypeError, handleError };

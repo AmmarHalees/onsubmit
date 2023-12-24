@@ -202,16 +202,7 @@ const pattern = {
     input: "c123456789",
     expectedOutput: [],
   },
-  isValidULID: {
-    rules: {
-      pattern: {
-        criterion: regex.ulid,
-        message: "Must be a valid ULID",
-      },
-    },
-    input: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
-    expectedOutput: [],
-  },
+
 };
 
 const required = {

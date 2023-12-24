@@ -1,19 +1,17 @@
 {
   "compilerOptions": {
-    /* Base Options: */
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "es2022",
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
-    /* Strictness */
     "strict": true,
+    "noUnusedLocals": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedParameters": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
-    /* If NOT transpiling with TypeScript: */
     "moduleResolution": "Node",
     "module": "ESNext",
     "noEmit": true,

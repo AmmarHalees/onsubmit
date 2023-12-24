@@ -16,6 +16,13 @@ const minLength = {
     input: "abc",
     expectedOutput: [],
   },
+  case: {
+    rules: {
+      minLength: { criterion: 3, message: "Minimum length is 3" },
+    },
+    input: "",
+    expectedOutput: [],
+  },
 };
 
 const maxLength = {

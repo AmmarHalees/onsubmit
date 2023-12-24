@@ -19,6 +19,15 @@ describe("validateField", () => {
         mocks.minLength.fail.rules
       )
     ).toEqual([]);
+
+    expect(
+      validateField(
+        mocks.minLength.case.input,
+        "testField",
+        mocks.minLength.case.rules
+      )
+    ).toEqual([]);
+
   });
 
   it("should validate maximum length", () => {

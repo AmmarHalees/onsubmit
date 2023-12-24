@@ -1,22 +1,24 @@
-// Custom error types
-class NetworkError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "NetworkError";
+type ERROR_NAMES = "TYPE_ERROR" | "MAPPING_ERROR";
+
+class MappingError extends Error {
+  constructor(
+    message: string = "Validation Error",
+    name: ERROR_NAMES = "MAPPING_ERROR"
+  ) {
+    super();
+    this.name = name;
+    this.message = message;
   }
 }
 
-class ValidationError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "ValidationError";
-  }
-}
-
-class DatabaseError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "DatabaseError";
+class TypeError extends Error {
+  constructor(
+    message: string = "Type Error",
+    name: ERROR_NAMES = "TYPE_ERROR"
+  ) {
+    super();
+    this.name = name;
+    this.message = message;
   }
 }
 
@@ -25,31 +27,21 @@ class DatabaseError extends Error {
 // Error Handling Utility
 function handleError(error: Error): void {
   switch (error.constructor) {
-    case NetworkError:
-      console.log("Handle network error:", error.message);
-      // specific logic for NetworkError
+    case TypeError:
+      console.log("Type Error:", error.message);
       break;
-    case ValidationError:
-      console.log("Handle validation error:", error.message);
-      // specific logic for ValidationError
-      break;
-    case DatabaseError:
-      console.log("Handle database error:", error.message);
-      // specific logic for DatabaseError
+    case MappingError:
+      console.log("Mapping Error:", error.message);
       break;
     default:
-      console.log("Handle general error:", error.message);
-      // logic for unrecognized error types
+      console.log(
+        "Internal Error",
+        error.message,
+        "Please report this at" +
+          "https://github.com/AmmarHalees/onsubmit/issues"
+      );
       break;
   }
 }
 
-// Example usage
-try {
-  // Code that may throw errors
-  throw new ValidationError("Invalid input data");
-} catch (error) {
-  if (error instanceof Error) {
-    handleError(error);
-  }
-}
+export { MappingError, handleError };

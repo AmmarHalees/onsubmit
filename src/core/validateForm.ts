@@ -1,11 +1,5 @@
 import { doKeysMatch } from "../internal/do-keys-match";
-import {
-  FieldError,
-  NameRuleMap,
-  KeyValuePair,
-  RulesObject,
-  FormDataShape,
-} from "../types";
+import { FieldError, NameRuleMap, RulesObject, FormDataShape } from "../types";
 import _utils from "../utils";
 import { validateField } from "./validateField";
 

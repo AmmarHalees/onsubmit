@@ -11,22 +11,22 @@ class MappingError extends Error {
   }
 }
 
-class CustomTypeError extends Error {
+class CustomTypeError extends TypeError {
   constructor(
     message: string = "Type Error",
     name: ERROR_NAMES = "TYPE_ERROR"
   ) {
     super();
     this.name = name;
-    this.message = message;
+    this.message = `Bad arguments: ${message}`;
   }
 }
 
-class RequiredParamError extends Error {
+class RequiredParamError extends CustomTypeError {
   constructor(paramName: string) {
     super();
     this.name = "RequiredParamError";
-    this.message = `${paramName} is required`;
+    this.message = `Bad arguments: ${paramName} is required`;
   }
 }
 

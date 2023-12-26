@@ -1,4 +1,8 @@
-import { MappingError, handleError } from "../internal/error-management";
+import {
+  CustomTypeError,
+  MappingError,
+  handleError,
+} from "../internal/error-management";
 import {
   RulesObject,
   FieldError,
@@ -16,21 +20,21 @@ export function validateField(
 ): Array<FieldError> {
   const errors: Array<FieldError> = [];
   try {
-
     if (!_utils.isString(value))
-      throw new TypeError("'value' must be a string");
+      throw new CustomTypeError("'value' must be a string");
 
-    if (!_utils.isString(name)) throw new TypeError("'name' must be a string");
+    if (!_utils.isString(name))
+      throw new CustomTypeError("'name' must be a string");
 
     const configMap: ConfigMap = {
       minLength: (value: string, criterion: number, message: string) => {
         /*--- Error Guards ---*/
 
         if (!_utils.isNumber(criterion))
-          throw new TypeError("'criterion' must be a number");
+          throw new CustomTypeError("'criterion' must be a number");
 
         if (!_utils.isString(message))
-          throw new TypeError("'message' must be a string");
+          throw new CustomTypeError("'message' must be a string");
 
         /*--- Functionality ---*/
 
@@ -42,10 +46,10 @@ export function validateField(
         /*--- Error Guards ---*/
 
         if (!_utils.isNumber(criterion))
-          throw new TypeError("'criterion' must be a number");
+          throw new CustomTypeError("'criterion' must be a number");
 
         if (!_utils.isString(message))
-          throw new TypeError("'message' must be a string");
+          throw new CustomTypeError("'message' must be a string");
 
         /*--- Functionality ---*/
 
@@ -57,10 +61,10 @@ export function validateField(
         /*--- Error Guards ---*/
 
         if (!_utils.isRegExp(criterion))
-          throw new TypeError("'criterion' must be a RegExp");
+          throw new CustomTypeError("'criterion' must be a RegExp");
 
         if (!_utils.isString(message))
-          throw new TypeError("'message' must be a string");
+          throw new CustomTypeError("'message' must be a string");
 
         if (value.length > 0 && !value.match(criterion)) {
           errors.push({ name, message });
@@ -70,10 +74,10 @@ export function validateField(
         /*--- Error Guards ---*/
 
         if (!_utils.isFunction(criterion))
-          throw new TypeError("'criterion' must be a function");
+          throw new CustomTypeError("'criterion' must be a function");
 
         if (!_utils.isString(message))
-          throw new TypeError("'message' must be a string");
+          throw new CustomTypeError("'message' must be a string");
 
         /*--- Functionality ---*/
 
@@ -85,10 +89,10 @@ export function validateField(
         /*--- Error Guards ---*/
 
         if (!_utils.isBoolean(criterion))
-          throw new TypeError("'criterion' must be a boolean");
+          throw new CustomTypeError("'criterion' must be a boolean");
 
         if (!_utils.isString(message))
-          throw new TypeError("'message' must be a string");
+          throw new CustomTypeError("'message' must be a string");
 
         /*--- Functionality ---*/
 

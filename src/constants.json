@@ -1,7 +1,4 @@
 {
-  "specialCharacters": ["hi"],
-
-  "recommendedPasswordLength": 12,
   "InSecureCharachters": [
     "<script",
     "script/>",

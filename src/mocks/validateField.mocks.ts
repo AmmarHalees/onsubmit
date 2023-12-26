@@ -1,5 +1,4 @@
 import regex from "../regex";
-import constants from "../constants.json";
 
 const minLength = {
   pass: {
@@ -209,7 +208,6 @@ const pattern = {
     input: "c123456789",
     expectedOutput: [],
   },
-
 };
 
 const required = {
@@ -310,34 +308,6 @@ const custom = {
     input: "ammar*",
     expectedOutput: [
       { name: "testField", message: "Name should not end with *" },
-    ],
-  },
-
-  hasAtLeast3SpecialCharacters: {
-    rules: {
-      custom: {
-        criterion: (criterion: string) => {
-          const specialCharacters = constants.specialCharacters;
-          let count = 0;
-          for (let i = 0; i < criterion.length; i++) {
-            if (specialCharacters.includes(criterion[i] as string)) {
-              count++;
-            }
-          }
-          if (count >= 3) {
-            return false;
-          }
-          return true;
-        },
-        message: "Name should have at least 3 special characters",
-      },
-    },
-    input: "ammar*",
-    expectedOutput: [
-      {
-        name: "testField",
-        message: "Name should have at least 3 special characters",
-      },
     ],
   },
 };

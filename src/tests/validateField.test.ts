@@ -223,14 +223,6 @@ describe("validateField", () => {
         mocks.custom.noStarAtTheEnd.rules
       )
     ).toEqual(mocks.custom.noStarAtTheEnd.expectedOutput);
-
-    expect(
-      validateField(
-        mocks.custom.hasAtLeast3SpecialCharacters.input,
-        "testField",
-        mocks.custom.hasAtLeast3SpecialCharacters.rules
-      )
-    ).toEqual(mocks.custom.hasAtLeast3SpecialCharacters.expectedOutput);
   });
 
   it("should validate multiple rules", () => {

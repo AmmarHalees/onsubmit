@@ -81,9 +81,9 @@ const errors = validateField('Ammar', 'firstName', firstNameRules);
 import { validateField } from 'onsubmit';
 
 const emailRules = {
-  required: { value: true, message: 'Email is required' },
+  required: { criterion: true, message: 'Email is required' },
   pattern: {
-    value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+    criterion: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
     mesaage: 'Invalid email',
   },
 };
@@ -101,7 +101,7 @@ import { validateForm } from 'onsubmit';
 
 const rulesObject = {
   custom: {
-    value: (value) => value === password,
+    criterion: (value) => value === password,
     message: 'Passwords do not match',
   }
 };
@@ -116,11 +116,11 @@ const errors = validateField(passwordRepeat, 'passwordRepeat', rulesObject);
 import { validateForm } from 'onsubmit';
 
 const rulesObject = {
-  minLength: { value: 3, message: 'Minimum length is 3' },
-  maxLength: { value: 10, message: 'Maximum length is 10' },
-  pattern: { value: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
-  custom: { value: (value) => value !== 'example', message: 'Value cannot be "example"' },
-  required: { value: true, message: 'Field is required' },
+  minLength: { criterion: 3, message: 'Minimum length is 3' },
+  maxLength: { criterion: 10, message: 'Maximum length is 10' },
+  pattern: { criterion: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
+  custom: { criterion: (value) => value !== 'example', message: 'Value cannot be "example"' },
+  required: { criterion: true, message: 'Field is required' },
 };
 
 const data = {

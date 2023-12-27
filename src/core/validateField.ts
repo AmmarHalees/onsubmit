@@ -11,7 +11,7 @@ import {
   ValidationFunction,
   Criterion,
 } from "../types";
-import _utils from "../utils";
+import utils from "../utils";
 
 export function validateField(
   value: string,
@@ -20,20 +20,20 @@ export function validateField(
 ): Array<FieldError> {
   const errors: Array<FieldError> = [];
   try {
-    if (!_utils.isString(value))
+    if (!utils.isString(value))
       throw new CustomTypeError("'value' must be a string");
 
-    if (!_utils.isString(name))
+    if (!utils.isString(name))
       throw new CustomTypeError("'name' must be a string");
 
     const configMap: ConfigMap = {
       minLength: (value: string, criterion: number, message: string) => {
         /*--- Error Guards ---*/
 
-        if (!_utils.isNumber(criterion))
+        if (!utils.isNumber(criterion))
           throw new CustomTypeError("'criterion' must be a number");
 
-        if (!_utils.isString(message))
+        if (!utils.isString(message))
           throw new CustomTypeError("'message' must be a string");
 
         /*--- Functionality ---*/
@@ -45,10 +45,10 @@ export function validateField(
       maxLength: (value: string, criterion: number, message: string) => {
         /*--- Error Guards ---*/
 
-        if (!_utils.isNumber(criterion))
+        if (!utils.isNumber(criterion))
           throw new CustomTypeError("'criterion' must be a number");
 
-        if (!_utils.isString(message))
+        if (!utils.isString(message))
           throw new CustomTypeError("'message' must be a string");
 
         /*--- Functionality ---*/
@@ -60,10 +60,10 @@ export function validateField(
       pattern: (value: string, criterion: RegExp, message: string) => {
         /*--- Error Guards ---*/
 
-        if (!_utils.isRegExp(criterion))
+        if (!utils.isRegExp(criterion))
           throw new CustomTypeError("'criterion' must be a RegExp");
 
-        if (!_utils.isString(message))
+        if (!utils.isString(message))
           throw new CustomTypeError("'message' must be a string");
 
         if (value.length > 0 && !value.match(criterion)) {
@@ -73,10 +73,10 @@ export function validateField(
       custom: (value: string, criterion: CustomFunction, message: string) => {
         /*--- Error Guards ---*/
 
-        if (!_utils.isFunction(criterion))
+        if (!utils.isFunction(criterion))
           throw new CustomTypeError("'criterion' must be a function");
 
-        if (!_utils.isString(message))
+        if (!utils.isString(message))
           throw new CustomTypeError("'message' must be a string");
 
         /*--- Functionality ---*/
@@ -88,10 +88,10 @@ export function validateField(
       required: (value: string, criterion: boolean, message: string) => {
         /*--- Error Guards ---*/
 
-        if (!_utils.isBoolean(criterion))
+        if (!utils.isBoolean(criterion))
           throw new CustomTypeError("'criterion' must be a boolean");
 
-        if (!_utils.isString(message))
+        if (!utils.isString(message))
           throw new CustomTypeError("'message' must be a string");
 
         /*--- Functionality ---*/

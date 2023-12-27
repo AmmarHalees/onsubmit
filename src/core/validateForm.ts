@@ -5,7 +5,7 @@ import {
   handleError,
 } from "../internal/error-management";
 import { FieldError, NameRuleMap, RulesObject, FormDataShape } from "../types";
-import _utils from "../utils";
+import utils from "../utils";
 import { validateField } from "./validateField";
 
 export function validateForm(data: FormDataShape, NameRuleMap: NameRuleMap) {
@@ -16,9 +16,9 @@ export function validateForm(data: FormDataShape, NameRuleMap: NameRuleMap) {
 
     if (!NameRuleMap) throw new RequiredParamError("NameRuleMap is required");
     if (!data) throw new RequiredParamError("data is required");
-    if (!_utils.isObject(data))
+    if (!utils.isObject(data))
       throw new CustomTypeError(`Form Data cannot be ${typeof data}`);
-    if (!_utils.isObject(NameRuleMap)) {
+    if (!utils.isObject(NameRuleMap)) {
       throw new CustomTypeError(`NameRuleMap cannot be ${typeof NameRuleMap}`);
     }
 

@@ -27,7 +27,7 @@ const isRegExp = (value: unknown): value is RegExp => value instanceof RegExp;
 const isFile = (element: HTMLInputElement): element is HTMLInputElement =>
   element.type === "file";
 
-const _utils = {
+const utils = {
   isDateObject,
   isString,
   isNumber,
@@ -39,4 +39,4 @@ const _utils = {
   isRegExp,
 };
 
-export default _utils;
+export default utils;

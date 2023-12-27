@@ -150,7 +150,7 @@ const errors = validateForm(data, rulesObject);
 
 ### Utils and patterns
 
-#### _utils
+#### utils
 
 `onsubmit` provides a set of utility functions and patterns to help you build your forms.
 

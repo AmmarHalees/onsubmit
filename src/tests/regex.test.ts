@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import _regex from "../regex/index";
+import regex from "../regex/index";
 
 describe("Regex Tests", () => {
   // Test Email Regex
@@ -20,7 +20,7 @@ describe("Regex Tests", () => {
       ];
 
       validEmails.forEach((email) => {
-        expect(_regex.email.test(email)).toBe(true);
+        expect(regex.email.test(email)).toBe(true);
       });
     });
 
@@ -43,7 +43,7 @@ describe("Regex Tests", () => {
       ];
 
       invalidEmails.forEach((email) => {
-        expect(_regex.email.test(email)).toBe(false);
+        expect(regex.email.test(email)).toBe(false);
       });
     });
   });
@@ -61,7 +61,7 @@ describe("Regex Tests", () => {
       ];
 
       validURIs.forEach((uri) => {
-        expect(_regex.uri.test(uri)).toBe(true);
+        expect(regex.uri.test(uri)).toBe(true);
       });
     });
 
@@ -78,7 +78,7 @@ describe("Regex Tests", () => {
       ];
 
       invalidURIs.forEach((uri) => {
-        expect(_regex.uri.test(uri)).toBe(false);
+        expect(regex.uri.test(uri)).toBe(false);
       });
     });
   });
@@ -93,7 +93,7 @@ describe("Regex Tests", () => {
     ];
 
     invalidCUIDs.forEach((cuid) => {
-      expect(_regex.cuid.test(cuid)).toBe(false);
+      expect(regex.cuid.test(cuid)).toBe(false);
     });
   });
 
@@ -108,7 +108,7 @@ describe("Regex Tests", () => {
       ];
 
       validStrings.forEach((str) => {
-        expect(_regex.alphanumeric.test(str)).toBe(true);
+        expect(regex.alphanumeric.test(str)).toBe(true);
       });
     });
 
@@ -121,7 +121,7 @@ describe("Regex Tests", () => {
       ];
 
       invalidStrings.forEach((str) => {
-        expect(_regex.alphanumeric.test(str)).toBe(false);
+        expect(regex.alphanumeric.test(str)).toBe(false);
       });
     });
   });
@@ -137,7 +137,7 @@ describe("Regex Tests", () => {
       ];
 
       validKebabCases.forEach((str) => {
-        expect(_regex.kebabCase.test(str)).toBe(true);
+        expect(regex.kebabCase.test(str)).toBe(true);
       });
     });
 
@@ -151,7 +151,7 @@ describe("Regex Tests", () => {
       ];
 
       invalidKebabCases.forEach((str) => {
-        expect(_regex.kebabCase.test(str)).toBe(false);
+        expect(regex.kebabCase.test(str)).toBe(false);
       });
     });
   });
@@ -179,7 +179,7 @@ describe("Regex Tests", () => {
       ];
 
       validStrings.forEach((str) => {
-        expect(_regex.arabic.test(str)).toBe(true);
+        expect(regex.arabic.test(str)).toBe(true);
       });
     });
 
@@ -194,7 +194,7 @@ describe("Regex Tests", () => {
       ];
 
       invalidStrings.forEach((str) => {
-        expect(_regex.arabic.test(str)).toBe(false);
+        expect(regex.arabic.test(str)).toBe(false);
       });
     });
   });

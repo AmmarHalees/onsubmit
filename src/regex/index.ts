@@ -11,7 +11,7 @@ const uri =
   const arabic =
     /^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\u0660-\u0669،؛؟ـ\s\-–—.:!"“”‘’]+$/u;
 
-  const _regex = {
+  const regex = {
     email,
     uri,
     alphanumeric,
@@ -20,4 +20,4 @@ const uri =
     arabic,
   };
 
-export default _regex;
+  export default regex;

@@ -20,7 +20,8 @@
 
 ## Description
 
-`onsubmit` provides a simple and headless interface for validating form fields, with emphasis on security.
+`onsubmit` is the simplest, least set-up needing way to validate an input or a form. On the client or on the server.
+
 
 
 ### Features

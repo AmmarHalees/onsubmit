@@ -13,22 +13,13 @@ export interface Rule<TCriterion = Criterion> {
   message: string;
 }
 
-export interface RequiredRule extends Rule<boolean> {}
-
-export interface MinLengthRule extends Rule<number> {}
-
-export interface MaxLengthRule extends Rule<number> {}
-
-export interface PatternRule extends Rule<RegExp> {}
-
-export interface CustomRule extends Rule<CustomFunction> {}
 
 export interface RulesObject {
-  required?: RequiredRule;
-  minLength?: MinLengthRule;
-  maxLength?: MaxLengthRule;
-  pattern?: PatternRule;
-  custom?: CustomRule;
+  required?: Rule<boolean>;
+  minLength?: Rule<number>;
+  maxLength?: Rule<number>;
+  pattern?: Rule<RegExp>;
+  custom?: Rule<CustomFunction>;
 }
 
 export type FormDataShape = KeyValuePair | { [k: string]: FormDataEntryValue };
@@ -48,17 +39,11 @@ export type ValidationFunction<TCriterion> = (
   message: string
 ) => void;
 
-type MinLengthFunction = ValidationFunction<number>;
-type MaxLengthFunction = ValidationFunction<number>;
-type PatternFunction = ValidationFunction<RegExp>;
-type CustomFunctionType = ValidationFunction<CustomFunction>;
-type RequiredFunction = ValidationFunction<boolean>;
-
 // Updated ConfigMap with specific function types
 export type ConfigMap = {
-  minLength?: MinLengthFunction;
-  maxLength?: MaxLengthFunction;
-  pattern?: PatternFunction;
-  custom?: CustomFunctionType;
-  required?: RequiredFunction;
+  minLength?: ValidationFunction<number>;
+  maxLength?: ValidationFunction<number>;
+  pattern?: ValidationFunction<RegExp>;
+  custom?: ValidationFunction<CustomFunction>;
+  required?: ValidationFunction<boolean>;
 };

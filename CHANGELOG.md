@@ -1,5 +1,11 @@
 # onsubmit
 
+## 0.0.19
+
+### Patch Changes
+
+- f4f827b: errors
+
 ## 0.0.18
 
 ### Patch Changes

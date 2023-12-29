@@ -1,4 +1,4 @@
-type ERROR_NAMES = "TYPE_ERROR" | "MAPPING_ERROR";
+type ERROR_NAMES = "TYPE_ERROR" | "MAPPING_ERROR" | "REQUIRED_PARAM_ERROR";
 
 class MappingError extends Error {
   constructor(
@@ -22,19 +22,24 @@ class CustomTypeError extends TypeError {
   }
 }
 
-class RequiredParamError extends CustomTypeError {
-  constructor(paramName: string) {
+class RequiredParamError extends TypeError {
+  constructor(
+    message: string = "Required Param Error",
+    name: ERROR_NAMES = "REQUIRED_PARAM_ERROR"
+  ) {
     super();
-    this.name = "RequiredParamError";
-    this.message = `Bad arguments: ${paramName} is required`;
+    this.name = name;
+    this.message = `Required param: ${message}`;
   }
 }
 
 function handleError(error: Error) {
   if (error.name === "TYPE_ERROR") {
-    console.error("Type Error:", error.message);
-  } else if (error.name === "TYPE_ERROR") {
-    console.error("Mapping Error:", error.message);
+    console.error(error.message);
+  } else if (error.name === "REQUIRED_PARAM_ERROR") {
+    console.error(error.message);
+  } else if (error.name === "MAPPING_ERROR") {
+    console.error(error.message);
   } else {
     console.error(
       "Internal Error",

@@ -7,7 +7,7 @@ class MappingError extends Error {
   ) {
     super();
     this.name = name;
-    this.message = message;
+    this.message = `Mapping Error: ${message}`;
   }
 }
 

@@ -79,12 +79,12 @@ const errors = validateField('Ammar', 'firstName', firstNameRules);
 #### Validate a single field
 
 ```Typescript
-import { validateField } from 'onsubmit';
+import { validateField, regex } from 'onsubmit';
 
 const emailRules = {
   required: { criterion: true, message: 'Email is required' },
   pattern: {
-    criterion: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+    criterion: regex.email,
     mesaage: 'Invalid email',
   },
 };
@@ -98,7 +98,7 @@ const errors = validateField('ammar@winenergy.co' , 'email', emailRules);
 
 ```Typescript
 
-import { validateForm } from 'onsubmit';
+import { validateField } from 'onsubmit';
 
 const rulesObject = {
   custom: {
@@ -117,11 +117,53 @@ const errors = validateField(passwordRepeat, 'passwordRepeat', rulesObject);
 import { validateForm } from 'onsubmit';
 
 const rulesObject = {
-  minLength: { criterion: 3, message: 'Minimum length is 3' },
-  maxLength: { criterion: 10, message: 'Maximum length is 10' },
-  pattern: { criterion: /^[a-z]+$/, message: 'Only lowercase letters allowed' },
-  custom: { criterion: (value) => value !== 'example', message: 'Value cannot be "example"' },
-  required: { criterion: true, message: 'Field is required' },
+  firstName: {
+    required: {
+      criterion: true,
+      message: "First name is required",
+    },
+    minLength: {
+      criterion: 5,
+      message: "First name must be at least 5 characters",
+    },
+    maxLength: {
+      criterion: 20,
+      message: "First name must be at most 20 characters",
+    },
+    pattern: {
+      criterion: /^[a-zA-Z0-9_ ]*$/,
+      message: "First name must be a valid name",
+    },
+  },
+  lastName: {
+    required: {
+      criterion: true,
+      message: "Last name is required",
+    },
+    minLength: {
+      criterion: 5,
+      message: "Last name must be at least 5 characters",
+    },
+    maxLength: {
+      criterion: 20,
+      message: "Last name must be at most 20 characters",
+    },
+  },
+    email: {
+    required: {
+      criterion: true,
+      message: "Email is required",
+    },
+    minLength: {
+      criterion: 5,
+      message: "Email must be at least 5 characters",
+    },
+
+    pattern: {
+      criterion: /^\S+@\S+\.\S+$/,
+      message: "Email must be a valid email",
+    },
+  },
 };
 
 const data = {

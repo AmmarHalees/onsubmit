@@ -10,20 +10,21 @@ import {
   ConfigMap,
   ValidationFunction,
   Criterion,
+  FileCriterion,
 } from "../types";
 import utils from "../utils";
 
 export function validateField(
-  value: string,
+  value: string | File,
   name: string,
   rulesObject: RulesObject
 ): Array<FieldError> {
   const errors: Array<FieldError> = [];
   try {
-    if (!utils.isString(value))
-      throw new CustomTypeError(
-        `'value' must be a string. Received ${typeof value}`
-      );
+    // if (!utils.isString(value))
+    //   throw new CustomTypeError(
+    //     `'value' must be a string. Received ${typeof value}`
+    //   );
 
     if (!utils.isString(name))
       throw new CustomTypeError(
@@ -122,6 +123,68 @@ export function validateField(
 
         if (value.replace(/\s/g, "") === "" && criterion) {
           errors.push({ name, message });
+        }
+      },
+
+      file: (value: File, criterion: FileCriterion, message: string) => {
+        /*--- Error Guards ---*/
+
+        if (!utils.isObject(criterion))
+          throw new CustomTypeError(
+            `'criterion' must be an object. Received ${typeof criterion}. At "file"`
+          );
+
+        if (!utils.isString(message))
+          throw new CustomTypeError(
+            `'message' must be a string. Received ${typeof message} . At "file"`
+          );
+
+        /*--- Functionality ---*/
+
+        const { minSize, maxSize, type } = criterion;
+
+        if (minSize) {
+          if (!utils.isString(minSize))
+            throw new CustomTypeError(
+              `'minSize' must be a string. Received ${typeof minSize}. At "file"`
+            );
+
+          if (value.size < utils.convertToBytes(minSize)) {
+            errors.push({ name, message });
+          }
+        }
+
+        if (maxSize) {
+          if (!utils.isString(maxSize))
+            throw new CustomTypeError(
+              `'maxSize' must be a string. Received ${typeof maxSize}. At "file"`
+            );
+
+          if (value.size > utils.convertToBytes(maxSize)) {
+            errors.push({ name, message });
+          }
+        }
+
+        if (type) {
+          if (!utils.isString(type))
+            throw new CustomTypeError(
+              `'type' must be a string. Received ${typeof type}. At "file"`
+            );
+
+          if (value.type !== type) {
+            errors.push({ name, message });
+          }
+        }
+
+        if (name) {
+          if (!utils.isString(name))
+            throw new CustomTypeError(
+              `'name' must be a string. Received ${typeof name}. At "file"`
+            );
+
+          if (value.name !== name) {
+            errors.push({ name, message });
+          }
         }
       },
     } as const;

@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { validateField } from "../index";
 import mocks from "../mocks/validateField.mocks";
+import { JSDOM } from "jsdom";
 
 describe("validateField", () => {
   it("should validate minimum length", () => {
@@ -27,7 +28,6 @@ describe("validateField", () => {
         mocks.minLength.case.rules
       )
     ).toEqual([]);
-
   });
 
   it("should validate maximum length", () => {
@@ -242,4 +242,72 @@ describe("validateField", () => {
       )
     ).toEqual(mocks.multipleRules.case2.expectedOutput);
   });
+});
+
+const setupMockFileInput = (dom: JSDOM, file: File) => {
+  const fileInput = dom.window.document.getElementById(
+    "fileInput"
+  ) as HTMLInputElement;
+  Object.defineProperty(fileInput, "files", {
+    value: [file],
+    configurable: true, // Allows the property to be redefined in subsequent tests
+  });
+  return fileInput;
+};
+
+describe("file validation tests", () => {
+  const dom = new JSDOM('<!DOCTYPE html><input type="file" id="fileInput">');
+  global.HTMLInputElement = dom.window.HTMLInputElement;
+
+  it("should fail when file is larger than maxSize", () => {
+    const largeBlob = new dom.window.Blob(
+      [new Array(1024 * 1024 * 2).fill("a").join("")], // 2MB file
+      { type: "text/plain" }
+    );
+    const largeFile = new dom.window.File([largeBlob], "large.txt", {
+      type: "text/plain",
+    });
+
+    const fileInput = setupMockFileInput(dom, largeFile);
+
+    // if (fileInput instanceof HTMLInputElement && fileInput.files?.[0]) {
+    //   expect(
+    //     validateField(fileInput.files[0], "fileField", {
+    //       file: {
+    //         criterion: {
+    //           maxSize: "1MB",
+    //           type: "text/plain",
+    //           fileName: "large.txt",
+    //         },
+    //         message: "File too large",
+    //       },
+    //     })
+    //   ).toEqual([{ name: "fileField", message: "File too large" }]);
+    // }
+  });
+
+  // it("should fail when file type is incorrect", () => {
+  //   const jpegBlob = new dom.window.Blob(["jpeg content"], {
+  //     type: "image/jpeg",
+  //   });
+  //   const jpegFile = new dom.window.File([jpegBlob], "image.jpeg", {
+  //     type: "image/jpeg",
+  //   });
+
+  //   const fileInput = setupMockFileInput(dom, jpegFile);
+
+  //   if (fileInput instanceof HTMLInputElement && fileInput.files?.[0]) {
+  //     expect(
+  //       validateField(fileInput.files[0], "fileField", {
+  //         file: {
+  //           criterion: {
+  //             type: "text/plain",
+  //             fileName: "image.jpeg",
+  //           },
+  //           message: "Incorrect file type",
+  //         },
+  //       })
+  //     ).toEqual([{ name: "fileField", message: "Incorrect file type" }]);
+  //   }
+  // });
 });

@@ -6,13 +6,25 @@ export interface KeyValuePair {
   [key: string]: string;
 }
 
-export type Criterion = string | number | CustomFunction | boolean | RegExp;
+export interface FileCriterion {
+  minSize?: string;
+  maxSize?: string;
+  type?: string;
+  fileName?: string;
+}
+
+export type Criterion =
+  | string
+  | number
+  | CustomFunction
+  | boolean
+  | RegExp
+  | FileCriterion;
 
 export interface Rule<TCriterion = Criterion> {
   criterion: TCriterion;
   message: string;
 }
-
 
 export interface RulesObject {
   required?: Rule<boolean>;
@@ -20,6 +32,7 @@ export interface RulesObject {
   maxLength?: Rule<number>;
   pattern?: Rule<RegExp>;
   custom?: Rule<CustomFunction>;
+  file?: Rule<FileCriterion>;
 }
 
 export type FormDataShape = KeyValuePair | { [k: string]: FormDataEntryValue };
@@ -33,8 +46,8 @@ export interface NameRuleMap {
   [key: string]: RulesObject;
 }
 
-export type ValidationFunction<TCriterion> = (
-  value: string,
+export type ValidationFunction<TCriterion, TValue = string> = (
+  value: TValue,
   criterion: TCriterion,
   message: string
 ) => void;
@@ -46,4 +59,5 @@ export type ConfigMap = {
   pattern?: ValidationFunction<RegExp>;
   custom?: ValidationFunction<CustomFunction>;
   required?: ValidationFunction<boolean>;
+  file?: ValidationFunction<FileCriterion, File>;
 };
